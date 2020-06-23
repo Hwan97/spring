@@ -1,0 +1,77 @@
+@import url("common.css");
+
+/* 배경 이미지 */
+.fade_container{ width: 100%; max-width: 1920px; margin: 0 auto; height: 755px; }
+.fade_container .bg_1,
+.fade_container .bg_2,
+.fade_container .bg_3{ width: 100%; max-width: 1920px; height: 755px;  position: absolute; z-index: -9999; }
+.fade_container .bg_1{ display: block; background-image: url(../../images/main/background/bg_1.jpg); background-size: cover; background-position: center; background-repeat: no-repeat; }
+.fade_container .bg_2{ display: none; background-image: url(../../images/main/background/bg_2.jpg); background-size: cover; background-position: center; background-repeat: no-repeat; }
+.fade_container .bg_3{ display: none; background-image: url(../../images/main/background/bg_3.jpg); background-size: cover; background-position: center; background-repeat: no-repeat; }
+
+/* 컨테이너 */
+.container_wrap { width: 100%; height: auto; position: absolute; top: 175px; text-align: center; box-sizing: border-box; }
+/* 슬라이더 */
+.container_wrap .inner_wrap{ width: 1200px; height: 635px; display: inline-block; text-align: left; }
+.container_wrap .inner_wrap .slider_wrap { height: 100%; float: left; width: 70%; background-color: transparent; background-repeat: no-repeat; background-size: 100% 100%; position: relative; }
+.container_wrap .inner_wrap .slider_wrap .slider_control { z-index: 6; width: 178px; height: 35px; border: 1px solid #dbdddc; background-color: white; position: absolute; right: 30px; top: 15px; }
+.container_wrap .inner_wrap .slider_wrap .slider_control .slider_no { width: 70px; height: 100%; line-height: 35px; float: left; text-align: center; letter-spacing: 2px; font-size: .9em; border-right: 1px solid #dbdddc; }
+.container_wrap .inner_wrap .slider_wrap .slider_control .slider_btn { cursor: pointer; width: 35px; height: 35px; float: left; }
+.container_wrap .inner_wrap .slider_wrap .slider_control .slider_btn.slider_prev,
+.container_wrap .inner_wrap .slider_wrap .slider_control .slider_btn.slider_stop,
+.container_wrap .inner_wrap .slider_wrap .slider_control .slider_btn.slider_start{ border-right: 1px solid #dbdddc;  }
+.container_wrap .inner_wrap .slider_wrap .slider_control .slider_btn.slider_prev { background-image: url(../../images/main/slider_control/prev.png); background-repeat: no-repeat; background-position: center; }
+.container_wrap .inner_wrap .slider_wrap .slider_control .slider_btn.slider_stop { background-image: url(../../images/main/slider_control/stop.png); background-repeat: no-repeat; background-position: center; }
+.container_wrap .inner_wrap .slider_wrap .slider_control .slider_btn.slider_start { background-image: url(../../images/main/slider_control/start.png); background-repeat: no-repeat; background-position: center; display: none; }
+.container_wrap .inner_wrap .slider_wrap .slider_control .slider_btn.slider_next { background-image: url('../../images/main/slider_control/next.png'); background-repeat: no-repeat; background-position: center; cursor: pointer; width: 35px; height: 35px; }
+.container_wrap .slider_content_wrap { width: 100%; height: 100%; }
+.container_wrap .slider_content { color: white; position: absolute; width: 100%; height: 100%; transition: 1s; z-index: 0; opacity: 0; transition: all 0.5s ease-in-out; transform: scale(0.9); }
+.container_wrap .slide_01 { background: url('../../images/main/slider/flexmate.png'); }
+.container_wrap .slide_02 { background: url('../../images/main/slider/servercraft.png'); }
+.container_wrap .slide_03 { background: url('../../images/main/slider/smartcerti.png'); }
+.container_wrap .shortcut a { background: url('../../images/main/slider/shortcut.png'); width: 157px; height: 48px; position: absolute; bottom: 135px; left: 70px; }
+.container_wrap .slider_content .TitleContent_wrap{ margin-top: 80px; margin-left: 70px; height: 555px; position: relative; }
+.container_wrap .slider_content .TitleContent_wrap .gotoBtn{ position: absolute; bottom: 158px;  width: 159px; height: 49px; }
+.container_wrap .slider_content .TitleContent_wrap .slider_subject { width: auto; font-size: 4.5em; color: white; font-family: 'NanumGothic-Bold'; }
+.container_wrap .slider_content .TitleContent_wrap  p { display: block; line-height: 30px; margin-top: 46px; font-weight: 500; }
+.container_wrap .showing { transform: none; opacity: 1; display: block; z-index: 1; }
+
+/* 우측 사이드 */
+.container_wrap .side { height: 100%; float: left; width: 30%; }
+
+/* 우측 사이드 - 뉴스*/
+.container_wrap .side .news { width: 320px; height: 250px; padding: 20px 20px 0 20px; position: relative; background-color: white; }
+.container_wrap .side .news .news_label { font-style: normal; padding: 3px; border-top: 1px solid black; border-bottom: 1px solid black; color: #6e6e6e; display: inline-block; font-size: 1em; font-family: 'NanumGothic-Bold'; }
+.container_wrap .side .news .news_plus>a { display: block; width: 35px; height: 35px; position: absolute; top: 20px; right: 20px; text-indent: -9999em; background: url(../../images/main/side/btn_plus.png) no-repeat center center; border: 1px solid #e2e2e2; }
+.container_wrap .side .news .news_subject { display: block; margin: 32px 0 0; font-size: 1em; font-family: 'NanumGothic-Bold'; line-height: 25px; overflow: hidden; text-overflow: ellipsis; white-space: normal; word-break: keep-all; }
+.container_wrap .side .news .news_subject:hover { text-decoration: underline; cursor: pointer; }
+.container_wrap .side .news .news_date { display: block; height: 20px; padding: 22px 0 14px; font-size: 0.9em; color: #a8a8a8; }
+.container_wrap .side .news .news_content { width: 100%; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; word-wrap: break-word; font-size: .9em; line-height: 20px; height: 60px; }
+
+/* 우측 사이드 - 원격지원 서비스*/
+.container_wrap .side .remote{ border-top:1px solid #ddd; border-bottom: 1px solid #ddd; height: 123px; background-color: #f7f7f7; display: block; padding: 20px; background-image: url(../../images/main/side/side_remote.png); background-repeat: no-repeat; background-position: 90%;}
+.container_wrap .side .remote_EN{ font-size: 1em; color: #6f6f6f; font-family: 'NanumGothic-Bold'; display: block;}
+.container_wrap .side .remote_KO{ font-size: 1.5em; font-family: 'NanumGothic-Bold'; margin: 10px 0 13px; display: block;}
+.container_wrap .side .remote_small{ font-size: .9em; font-family: 'NanumGothic-Bold'; margin-left: 3px; color: #555; letter-spacing: -1px;}
+.container_wrap .side .remote_btn{ display:inline-block; background-image: url(../../images/main/side/start_btn.png); background-repeat: no-repeat; background-size:cover; background-position: center; width: 122px; font-family: 'NanumGothic-Bold'; height: 33px; line-height: 33px; text-align: center; margin-top: 13px;}
+.container_wrap .side .remote_btn a{ display: block; color: #fff; font-size: .8em;}
+
+/* 우측 사이드  - 고객센터*/
+.container_wrap .side .customer { height: 160px; padding: 20px; background-color: #fff;}
+.container_wrap .side .customer .customer_EN { margin-bottom: 10px; color: #6f6f6f; font-family: 'NanumGothic-Bold'; display: block; font-size: 1em; }
+.container_wrap .side .customer .customer_KO { margin-bottom: 10px; font-size: 1.5em; font-family: 'NanumGothic-Bold'; display: block; }
+.container_wrap .side .customer .customer_KO:after { content: '토/일요일 및 공휴일은 휴무입니다.'; font-size: .6em; font-family: 'NanumGothic-Bold'; margin-left: 3px; color: #919191; }
+.container_wrap .side .customer .customer_call { margin-bottom: 10px; position: relative; height: 50px; line-height: 50px; }
+.container_wrap .side .customer .customer_call>a{ font-family: 'NanumGothic-Bold'; color: #2a71b1; font-size: 2.7em; letter-spacing: -1px; display: block;}
+.container_wrap .side .customer .customer_call>a>i { font-style: normal; width: 4px; display: inline-block; height: 4px; background: #2a71b1; border-radius: 100%; vertical-align: middle; margin: 0 5px; }
+.container_wrap .side .customer .customer_mailbox { margin: 18px 0 0 0; }
+.container_wrap .side .customer .customer_email { display: block; font-size: .9em; line-height: 22px;    /*margin: 7px 5px;*/ }
+.container_wrap .side .customer .customer_email b { font-style: normal; margin: 0 10px; font-family: 'NanumGothic-Bold'; }
+.container_wrap .side .customer .customer_email b.title { margin: 0 8px 0 0; }
+.container_wrap .side .customer .customer_email a{ font-family: 'NanumGothic-Bold'; }
+
+@media screen and (max-width:1200px) {
+    .fade_container{ display: none; overflow: hidden; }
+    .bg_1, .bg_2, .bg_3 { display: none; overflow: hidden; }
+    .container_wrap.clearfix { margin-top: 0px; margin-bottom: 0px; display: inline-block; position: relative; top: 0; border-top: 1px solid #d7d7d7 }
+}

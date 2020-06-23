@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="egovframework.example.board.service.impl.BoardMapper">
+
+	<resultMap id="board" type="egovframework.example.board.service.BoardVO">
+		<result property="id" column="id"/>
+		<result property="name" column="name"/>
+		<result property="description" column="description"/>
+		<!-- <result property="useYn" column="use_yn"/>
+		<result property="regUser" column="reg_user"/> -->
+		<result property="hitCounter" column="hitCounter"/>
+		<result property="datetime" column="datetime"/>
+	</resultMap>
+
+	<insert id="insertBoard" parameterType="BoardVO">
+
+			INSERT INTO BOARD
+				( ID
+				  , NAME
+				  , DESCRIPTION
+				  <!-- , USE_YN
+				  , REG_USER -->
+				  , HITCOUNTER				  				   
+				  )
+			VALUES ( #{id}
+				  , #{name}
+				  , #{description}
+				  <!-- , #{useYn}
+				  , #{regUser} -->
+				  , #{hitCounter}
+				  )
+
+	</insert>
+
+	<update id="updateBoard">
+			UPDATE BOARD
+			SET ID=#{id}
+				, NAME=#{name}
+				, DESCRIPTION=#{description}				
+				  WHERE ID=#{id}
+	</update>
+	<update id="counterBoard">		
+				UPDATE BOARD
+				SET hitCounter = hitCounter + 1
+				WHERE ID=#{id} 
+	</update>
+
+	<delete id="deleteBoard">
+
+			DELETE FROM BOARD
+			WHERE ID=#{id}
+
+	</delete>
+
+	<select id="selectBoard" resultMap="board">
+			SELECT
+				ID, NAME, DESCRIPTION ,HITCOUNTER ,DATETIME
+			FROM BOARD
+			WHERE ID=#{id}
+	</select>
+	
+	<!-- 최신글 -->
+	<select id="selectMainBoard" resultMap="board">
+			SELECT * FROM(SELECT ID, NAME, DESCRIPTION ,HITCOUNTER ,DATETIME FROM BOARD ORDER BY DATETIME DESC) WHERE ROWNUM = 1
+	</select>
+
+	<select id="selectBoardList" parameterType="searchVO" resultType="egovMap">
+				           
+           SELECT * FROM 
+(
+	SELECT  
+		A.*
+		, ROWNUM AS RN
+	FROM
+	( 
+		SELECT 
+			ID
+			, NAME 
+			, DESCRIPTION
+			, HITCOUNTER
+			,  TO_CHAR(DATETIME, 'YYYY-MM-DD') AS "DATETIME"
+		FROM BOARD
+		WHERE 1=1		
+			<if test="searchKeyword != null and searchKeyword != ''">
+		        <choose>
+		            <when test="searchCondition == 0">
+						AND	DESCRIPTION LIKE '%' || #{searchKeyword} || '%'
+					</when>
+		            <when test="searchCondition == 1">
+						AND	NAME  LIKE '%' || #{searchKeyword} || '%'
+					</when>
+					<when test="searchCondition == 2">
+						AND	NAME || DESCRIPTION LIKE '%' || #{searchKeyword} || '%'
+					</when>					
+				</choose>
+			</if> 
+		ORDER BY ID DESC
+	) A
+	)WHERE RN BETWEEN #{firstIndex} AND #{firstIndex} + #{recordCountPerPage}	
+		
+	
+
+			 
+	</select>
+
+	<select id="selectBoardListTotCnt" parameterType="searchVO" resultType="int">
+			SELECT COUNT(*) totcnt
+			FROM BOARD
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+		        <choose>
+		            <when test="searchCondition == 0">
+						AND DESCRIPTION LIKE '%' || #{searchKeyword} || '%'
+					</when>
+		            <when test="searchCondition == 1">
+						AND	NAME LIKE '%' || #{searchKeyword} || '%'
+					</when>
+					<when test="searchCondition == 2">
+						AND	NAME || DESCRIPTION LIKE '%' || #{searchKeyword} || '%'
+					</when>
+				</choose>
+			</if>
+	</select>
+
+</mapper>
