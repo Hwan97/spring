@@ -21,15 +21,20 @@
 		<script src="<c:url value="/js/slider.js"/>" > </script>	
 		<script src="<c:url value="/js/menu_link.js"/>" > </script>
 		
-	<script type="text/javaScript" language="javascript" defer="defer">
-        <!--
-        
+<!-- 	<script type="text/javaScript" language="javascript" defer="defer">
+ 
         /* 글 수정 화면 function */
         function fn_egov_select(id) {
+        	console.log('asd')
         	document.detailForm.selectedId.value = id;
            	document.detailForm.action = "<c:url value='/updateBoardView.do'/>";
            	document.detailForm.submit();
         }
+        
+        function fn_egov_select(id) {
+        	document.listForm.selectedId.value = id;
+           	document.listForm.action = "<c:url value='/updateSampleView.do'/>";
+           	document.listForm.submit();
         
         /* 글 등록 화면 function */
         function fn_egov_addView() {
@@ -50,9 +55,9 @@
            	document.detailForm.submit();
         }
         
-        //-->
 
-	</script>	
+	</script>	 -->
+	
 	</head>
 	
 	
@@ -124,12 +129,12 @@
 
 				<!-- right side -->
 				<div class="side">
-					<!-- news S -->
-					<form:form commandName="boardVO" id="detailForm" name="detailForm" class="write_frm">
-					</form:form>							
-					<form:form commandName="boardVO" id="detailForm" name="detailForm" class="write_frm">
+					<!-- news S -->			
+					<form:form commandName="boardVO" id="listForm" name="listForm" method="post">
+							  
+					<%-- <form:form commandName="boardVO" id="detailForm" name="detailForm" class="write_frm"> --%>
 					<div class="news">
-						<div class="news_label">NEWS</div>
+						<div class="news_label">NEssWSs</div>
 						<div class="news_plus">
 							<a href="javascript:GoSitePageLink('customer_center');">더보기</a>	<!-- MORE button -->
 						</div>
@@ -139,12 +144,32 @@
 						</div>
 						<div class="news_date">
 						${boardList.datetime}
-						<td align="left" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" ><c:out value="${boardList.name}"/>&nbsp;</td>
+						<%-- <td align="left" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" ><c:out value="${boardList.name}"/>&nbsp;</td>
+						<td align="center" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')"><c:out value="${boardList.id}"/></a></td> --%>
+					
 						</div>
-						<div class="news_content" style="background:white;">
-							${boardList.description}																							
+						<div class="news_content" style="background:white;" id="news_content">
+							${boardList.description}
+														<%-- <a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" id="selectedId"><c:out value="${boardList.id}"/></a>
+														<span value="${boardList.id}" onclick="fn_egov_select()" name="selectedId" id="selectedId"></span> --%>																				
 						</div>
 					</div>
+			
+            			<tr>
+            				<td align="center" class="listtd"><c:out value="${paginationInfo.totalRecordCount+2 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}"/></td>
+            				<%-- <td align="center" class="listtd"><c:out value="${result.id}"/></a></td> --%>
+            				<td align="left" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${result.id}"/>')" name="selectedId" ><c:out value="${result.name}"/>&nbsp;</td>            				
+            				<%-- <td align="center" class="listtd"><c:out value="${result.description}"/>&nbsp;</td> --%>
+            				<%-- <td align="center" class="listtd"><c:out value="${result.regUser}"/>&nbsp;</td> --%>
+            				<td align="center" class="listtd"><c:out value="${result.datetime}"/>&nbsp;</td>
+            				<td align="center" class="listtd"><c:out value="${result.hitcounter}"/>&nbsp;</td>
+            				<%-- <td align="center" class="listtd"><c:out value="${result.totCnt}"/>&nbsp;</td> --%>
+            			</tr>
+        			
+					</form:form>
+					<form:form commandName="searchVO" id="listForm" name="listForm" method="post">
+						<%-- <a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" ><c:out value="${boardList.name}"/>&nbsp; --%>
+						<td align="left" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${result.id}"/>')" name="selectedId" ><c:out value="${result.name}"/>&nbsp;</td>            				
 					</form:form>							
 					<!-- news E -->
 					<!-- Remote support Service S -->
@@ -170,17 +195,67 @@
 				</div>
 			</div>
 		</div>
-
+		<form:form commandName="searchVO" id="listForm" name="listForm" method="post">
+	         <c:forEach var="result" items="${resultList}" varStatus="status">
+            			<tr>
+            				<td align="center" class="listtd"><c:out value="${paginationInfo.totalRecordCount+2 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}"/></td>
+            				<%-- <td align="center" class="listtd"><c:out value="${result.id}"/></a></td> --%>
+            				<td align="left" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${result.id}"/>')" name="selectedId" ><c:out value="${result.name}"/>&nbsp;</td>            				
+            				<%-- <td align="center" class="listtd"><c:out value="${result.description}"/>&nbsp;</td> --%>
+            				<%-- <td align="center" class="listtd"><c:out value="${result.regUser}"/>&nbsp;</td> --%>
+            				<td align="center" class="listtd"><c:out value="${result.datetime}"/>&nbsp;</td>
+            				<td align="center" class="listtd"><c:out value="${result.hitcounter}"/>&nbsp;</td>
+            				<%-- <td align="center" class="listtd"><c:out value="${result.totCnt}"/>&nbsp;</td> --%>
+            			</tr>s
+        			</c:forEach>					</form:form>
 		<!-- footer S -->
-		<%@ include file="./inc/footer.jsp" %>
+		<%@ include file="./inc/footer.jsp" %>		
 		<!-- footer E -->
 	</div>
 
 	<!-- script -->
-<script>
-		 $('.news_content p').removeAttr("style");		
+		<script>
+	window.onload = function(){
+		var reda = $('#news_content').children().removeAttr("style");
+		$('.news_content').children().removeAttr("class");		
 		
-      
-		</script>
+/* 		
+		 var red = document.getElementById('news_content').childNodes;	 	
+	 	red[0].removeAttrubute('style');
+		console.log(red)
+		 */
+		
+		var red = document.getElementById('news_content');	 	 		
+		if(red.children.length)
+	// 그래서, 먼저 개체가 찼는 지(자식 노드가 있는 지) 검사
+	 {
+		console.log('자식있음')
+		   /* console.log(red + "asd") */
+	   var children = red.children;
+	   console.log(children[i])
+	   for (var i = 0; i < children.length; i++) {	      
+	   		children[i].style.display = null;
+	   }}   
+	
+	
+};
+
+
+	
+   // children[i]로 각 자식에 무언가를 함 
+   // 주의: 목록은 유효해(live), 자식 추가나 제거는 목록을 바꿈	
+	
+	
+	
+		
+	
+	
+	/* if (demodiv.hasChildNodes()){
+	    var children = demodive.childNodes;
+	    for(var i=0; i<children.length; i++){
+	        outputString += "자식노드: " + children[i].nodeName + "<br />";
+	    }
+	} */
+	</script>
 </body>
 </html>

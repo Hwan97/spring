@@ -1,14 +1,57 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
+<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="ko" xml:lang="ko">
 	<head>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="utf-8">
 		<title>진진시스템(주)</title>
-		<link rel="stylesheet" type="text/css" href="./css/m/subpage.css">
+		<link rel="stylesheet" type="text/css" href="./css/m/subpage.css">		
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script src="./js/main.js"></script>
 		<script src="./js/menu_link.js"></script>
+		<script type="text/javaScript" language="javascript" defer="defer">
+        <!--
+        
+        /* 글 수정 화면 function */
+        function fn_egov_select(id) {
+        	document.listForm.selectedId.value = id;
+           	document.listForm.action = "<c:url value='/updateBoardView.do'/>";
+           	document.listForm.submit();
+        }
+        
+        /* 글 등록 화면 function */
+        function fn_egov_addView() {
+           	document.listForm.action = "<c:url value='/addBoard.do'/>";
+           	document.listForm.submit();
+        }
+        
+        /* 글 목록 화면 function */
+        function fn_egov_selectList() {
+        	document.listForm.action = "<c:url value='/egovBoardList.do'/>";
+           	document.listForm.submit();
+        }
+        
+        /* pagination 페이지 링크 function */
+        function fn_egov_link_page(pageNo){
+        	document.listForm.pageIndex.value = pageNo;
+        	document.listForm.action = "<c:url value='/egovBoardList.do'/>";
+           	document.listForm.submit();
+        }
+        
+        //-->
+        
+        /* $('.paging li:eq(0)').css('margin-left','0') */
+        
+        $(window).bind('beforeunload', function(){
+        	$('.search_btn').val('')      
+});
+    </script>
         <%
             boolean isAllow = false;
             String ip = getClientIP(request);
@@ -27,15 +70,30 @@
             });
         </script>
         <% }  %>
+			<%!
+   public String getClientIP(HttpServletRequest request) {
+       String ip = request.getHeader("X-FORWARDED-FOR");
+       if (ip == null || ip.length() == 0) ip = request.getHeader("Proxy-Client-IP");
+       if (ip == null || ip.length() == 0) ip = request.getHeader("WL-Proxy-Client-IP");
+        if (ip == null || ip.length() == 0) ip = request.getRemoteAddr();
+        return ip;
+     }
+
+		String AllowIp[] = { "0:0:0:0:0:0:0:1", "127.0.0.1", "192.168.7.148", "192.168.7.182", "192.168.7.200"};
+ %> 
 	</head>
+	
 <body>
-	<div id="wrap">
+    <form:form commandName="searchVO" id="listForm" name="listForm" method="post">
+<div id="wrap">
+ 		<!-- header S -->
+
         <!-- header S -->
-        <%@ include file="../inc/header.jsp" %>
+        <%-- <%@ include file="../inc/header.jsp" %> --%>
         <!-- header E -->
 
         <!-- main visual S -->
-        <%@ include file="../inc/main_visual.jsp" %>
+        <%-- <%@ include file="../inc/main_visual.jsp" %> --%>
         <!-- main visual E -->
 		
 		<!-- container wrap S -->
@@ -45,7 +103,7 @@
             <div class="content">
                 <div class="content_header">공지사항</div>
                 <div class="content_body">
-                    <div class="total">총 <b>864</b>건</div>
+                    <div class="total">총 <b class="listCnt">${totCnt}</b>건</div>                  
                     <table class="board">
                         <caption>공지사항 목록</caption>
                         <colgroup>
@@ -59,101 +117,25 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="notice">
-                                <td><span class="notice_image"></span></td>
-                                <td class="subject">
-                                    <a href="view.jsp" class="new"><span class="text">다양하고 뛰어난 기술 서버 출시 ver3.8 각종 서버관리 업무를 수행하는 소프트웨어를 출시 했습니다.</span></a>
-                                </td>
-                                <td>2020-02-06</td>
-                                <td>123</td>
-                            </tr>
-                            <tr class="notice">
-                                <td><span class="notice_image"></span></td>
-                                <td class="subject">
-                                    <a href="./view.jsp">다양하고 뛰어난 기술 서버 출시 ver3.8 각종 서버관리 업무를 수행하는 소프트웨어를 출시 했습니다.</a>
-                                </td>
-                                <td>2020-02-06</td>
-                                <td>123</td>
-                            </tr>
-                            <tr class="notice">
-                                <td><span class="notice_image"></span></td>
-                                <td class="subject">
-                                    <a href="./view.jsp">다양하고 뛰어난 기술 서버 출시 ver3.8 각종 서버관리 업무를 수행하는 소프트웨어를 출시 했습니다.</a>
-                                </td>
-                                <td>2020-02-06</td>
-                                <td>123</td>
-                            </tr>
-                            <tr>
-                                <td>7</td>
-                                <td class="subject">
-                                    <a href="./view.jsp">다양하고 뛰어난 기술 서버 출시 ver3.8 각종 서버관리 업무를 수행하는 소프트웨어를 출시 했습니다.</a>
-                                </td>
-                                <td>2020-02-06</td>
-                                <td>123</td>
-                            </tr>
-                            <tr>
-                                <td>6</td>
-                                <td class="subject">
-                                    <a href="./view.jsp">다양하고 뛰어난 기술 서버 출시 ver3.8 각종 서버관리 업무를 수행하는 소프트웨어를 출시 했습니다.</a>
-                                </td>
-                                <td>2020-02-06</td>
-                                <td>123</td>
-                            </tr>
-                            <tr>
-                                <td>5</td>
-                                <td class="subject">
-                                    <a href="./view.jsp">다양하고 뛰어난 기술 서버 출시 ver3.8 각종 서버관리 업무를 수행하는 소프트웨어를 출시 했습니다.</a>
-                                </td>
-                                <td>2020-02-06</td>
-                                <td>123</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td class="subject">
-                                    <a href="./view.jsp">다양하고 뛰어난 기술 서버 출시 ver3.8 각종 서버관리 업무를 수행하는 소프트웨어를 출시 했습니다.</a>
-                                </td>
-                                <td>2020-02-06</td>
-                                <td>123</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td class="subject">
-                                    <a href="./view.jsp">다양하고 뛰어난 기술 서버 출시 ver3.8 각종 서버관리 업무를 수행하는 소프트웨어를 출시 했습니다.</a>
-                                </td>
-                                <td>2020-02-06</td>
-                                <td>123</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td class="subject">
-                                    <a href="./view.jsp">다양하고 뛰어난 기술 서버 출시 ver3.8 각종 서버관리 업무를 수행하는 소프트웨어를 출시 했습니다.</a>
-                                </td>
-                                <td>2020-02-06</td>
-                                <td>123</td>
-                            </tr>
-                            <tr>
-                                <td>1</td>
-                                <td class="subject">
-                                    <a href="./view.jsp">다양하고 뛰어난 기술 서버 출시 ver3.8 각종 서버관리 업무를 수행하는 소프트웨어를 출시 했습니다.</a>
-                                </td>
-                                <td>2020-02-06</td>
-                                <td>123</td>
-                            </tr>
+                    <c:forEach var="result" items="${resultList}" varStatus="status">
+            			<tr>
+            				<td align="center" class="listtd"><c:out value="${paginationInfo.totalRecordCount+2 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}"/></td>
+            				<%-- <td align="center" class="listtd"><c:out value="${result.id}"/></a></td> --%>
+            				<td align="left" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${result.id}"/>')" name="selectedId" ><c:out value="${result.name}"/>&nbsp;</td>            				
+            				<%-- <td align="center" class="listtd"><c:out value="${result.description}"/>&nbsp;</td> --%>
+            				<%-- <td align="center" class="listtd"><c:out value="${result.regUser}"/>&nbsp;</td> --%>
+            				<td align="center" class="listtd"><c:out value="${result.datetime}"/>&nbsp;</td>
+            				<td align="center" class="listtd"><c:out value="${result.hitcounter}"/>&nbsp;</td>
+            				<%-- <td align="center" class="listtd"><c:out value="${result.totCnt}"/>&nbsp;</td> --%>
+            			</tr>
+        			</c:forEach> 
                         </tbody>
                     </table>
-                    <ul class="paging">
-<%--                        <li class="first"><a href="#"></a></li>--%>
-                        <li class="prev"><a href="#"></a></li>
-<%--                        <li class="num active"><a href="#">1</a></li>--%>
-<%--                        <li class="num"><a href="#">2</a></li>--%>
-<%--                        <li class="num"><a href="#">3</a></li>--%>
-<%--                        <li class="num"><a href="#">4</a></li>--%>
-<%--                        <li class="num"><a href="#">5</a></li>--%>
-                        <li class="next"><a href="#"></a></li>
-<%--						<li class="last"><a href="#"></a></li>--%>
-
-                        <li class="write_btn"><a href="write.jsp">글작성</a></li>
-					</ul>
+                     <div id="paging" class="paging">
+        		<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="fn_egov_link_page"  />
+        		<!-- <li class="write_btn"><a href="javascript:fn_egov_addView();">글작성</a></li> -->
+        		<form:hidden path="pageIndex" />
+        	</div>
                     <div class="search">
 						<select id="searchCondition" name="searchCondition" title="조건선택">
 							<option value="all">전체</option>
@@ -170,11 +152,13 @@
 			</div>
 			<!-- content E -->
 		</div>
+		</form:form>
 		<!-- container wrap E -->
 
         <!-- footer S -->
-        <%@ include file="../inc/footer.jsp" %>
+        <%-- <%@ include file="../inc/footer.jsp" %> --%>
         <!-- footer E -->
-    </div>   
+    </div>
+  
 </body>
 </html>

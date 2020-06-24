@@ -213,19 +213,41 @@
 .content .content_body .write_btn_wrap .goList{ background-color: #eaeaea; border: 1px solid #d1d1d1; color: black; }
 
 /* 페이징 */
-.content .content_body .paging { margin: 20px 0; text-align: center; vertical-align: top; position: relative; }
-.content .content_body .paging li.prev,
-.content .content_body .paging li.next{ display: inline-block; width: 40px; height: 40px; vertical-align: middle; }
-.content .content_body .paging li.prev>a { background-image: url(../../images/m/prev.png); background-repeat: no-repeat; background-size: cover; }
-.content .content_body .paging li.next>a { background-image: url(../../images/m/next.png); background-repeat: no-repeat; background-size: cover; }
-.content .content_body .paging li a { display: block; width: inherit; height: inherit; margin: 0 5px; text-align: center; }
-.content .content_body .paging li.active a { background-color: #00a5de; color: #fff; }
+.content .content_body #paging { margin-top: 40px; text-align: center; vertical-align: top; position: relative; }
+#paging{ margin-top: 40px; text-align: center; vertical-align: top; position: relative; }
+
+.content .content_body .paging li { display: inline-block; width: 26px; height: 26px; vertical-align: middle; }
+.content .content_body .paging li.write_btn{ display:none; width: 80px; position: absolute; right: 0; font-size: .8em; top:0; }
+.content .content_body .paging li.first>a { background: url(../../images/subpage/customer_center/paging_first.gif) no-repeat; }
+.content .content_body .paging li.prev>a { background: url(../../images/subpage/customer_center/paging_prev.gif) no-repeat; }
+.content .content_body .paging li.next>a { background: url(../../images/subpage/customer_center/paging_next.gif) no-repeat; }
+.content .content_body .paging li.last>a { background: url(../../images/subpage/customer_center/paging_last.gif) no-repeat; }
+.content .content_body .paging li.prev { margin-right: 10px; }
+.content .content_body .paging li.next { margin-left: 10px; }
+.content .content_body .paging li a { display: block; width: 100%; height: 26px; line-height: 26px; text-align: center; }
+.content .content_body .paging li.num { font-size: .9em; color: black; width: 26px; line-height: 26px; padding: 0 5px; background: url(../../images/subpage/customer_center/paging_bar.gif) no-repeat right center; cursor: pointer;}
+.content .content_body .paging li.start{ padding-left: 0px !important; }
+.content .content_body .paging li.end{ padding-left: 5px !important; padding-right: 7px !important;}
+.content .content_body .paging li.num a:hover,
+.content .content_body .paging li.active a{ color: #000; border-bottom: 2px solid #002b5c; box-sizing: border-box; }
 
 /* 검색 */
-.content .content_body .search { display:none; width: 100%; padding: 10px 0; margin: 10px 0; border: 1px solid #d7d7d7; background-color: #f5f6f9; text-align: center; }
-.content .content_body .search select { line-height: 18px; border: 1px solid #a6a6a6; box-sizing: border-box; margin: 0 20px 10px 20px; width: -webkit-fill-available; height: 26px; background-color: white; }
-.content .content_body .search .input_wrap { padding: 0 20px; }
-.content .content_body .search .inputText { display: inline-block; padding: 0 10px; height: 24px; width: calc(100% - 86px); border: 1px solid #a6a6a6; vertical-align: top; }
-.content .content_body .search .btn { cursor: pointer; box-sizing: border-box; display: inline-block; min-width: 55px; height: 18px; line-height: 18px; padding: 0 8px; margin: 0px 2px; text-align: center; vertical-align: top; overflow: hidden; }
-.content .content_body .search .search_btn { background-color: #002b5c; color: #fff; border: 1px solid #002b5c; height: 26px; line-height: 26px; }
-.content .content_body .search .reset_btn { color: black; border: 1px solid #d1d1d1; line-height: 26px; height: 26px; margin-top: 10px; background-color: white; }
+.content .content_body .search { display: none; width: 100%; padding: 20px 0; margin: 10px 0; border: 1px solid #d7d7d7; background-color: #f5f6f9; text-align: center; }
+.content .content_body .search select { min-width: 100px; height: 26px; line-height: 26px; border: 1px solid #a6a6a6; box-sizing: border-box; }
+.content .content_body .search .inputText { display: inline-block; padding: 0 10px; height: 24px; border: 1px solid #a6a6a6; vertical-align: top; }
+.content .content_body .search .btn { cursor: pointer; box-sizing: border-box; display: inline-block; min-width: 55px; height: 26px; line-height: 26px; padding: 0 8px; margin: 0px 2px; text-align: center; vertical-align: top; overflow: hidden; }
+.content .content_body .search .search_btn { background-color: #002b5c; color: #fff; border: 1px solid #002b5c; }
+.content .content_body .search .reset_btn { background-color: #eaeaea; color: black; border: 1px solid #d1d1d1; }
+@media screen and (max-width:1200px) {
+    /*.content .content_body { padding: 54px 30px 34px 0; }*/
+    /*.content .content_header { margin-right: 30px; }*/
+    /*.sub_mainVisual{ width: 1200px; }*/
+    .content{ margin-left: 20px !important; }
+    .content .content_body .tab_menu { width: 900px; }
+
+    .content .content_body .tab_menu .tab_01, 
+    .content .content_body .tab_menu .tab_02, 
+    .content .content_body .tab_menu .tab_03 { width: 281px; }
+    
+    .content .content_body ul.inner span { width: 645px; }
+}

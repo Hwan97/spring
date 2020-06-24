@@ -145,8 +145,11 @@ public class EgovBoardController {
 		return "product/pro_01";
 	}
 
-	@RequestMapping(value = {"/egovBoardList.do", "/help_01"})
-	public String selectBoardList(@ModelAttribute("searchVO") BoardDefaultVO searchVO, ModelMap model) throws Exception {
+	@RequestMapping(value = {"/egovBoardList.do", "/help_01", "/main" })
+	public String selectBoardList(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("searchVO") BoardDefaultVO searchVO, ModelMap model) throws Exception {
+		
+		
+	
 
 		/** EgovPropertyService.board */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
@@ -173,8 +176,10 @@ public class EgovBoardController {
 		
 		model.addAttribute("totCnt", totCnt);
 		
-
-		return "customer_center/help_01";
+		Device device = DeviceUtils.getCurrentDevice(request);			
+		if(device.isMobile()) 		 	return "m/customer_center/help_01"; // check : 바로 return이 아니고 단순히 viewName만 처리
+		
+		return "customer_center/help_01";				
 	}
 
 	/**
@@ -256,19 +261,19 @@ public class EgovBoardController {
 	 * @exception Exception
 	 */
 		@RequestMapping("/updateBoard.do")
-		public String updateSample(@ModelAttribute("searchVO") BoardDefaultVO searchVO, BoardVO sampleVO, BindingResult bindingResult, Model model, SessionStatus status)
+		public String updateBoard(@ModelAttribute("searchVO") BoardDefaultVO searchVO, BoardVO boardVO, BindingResult bindingResult, Model model, SessionStatus status)
 				throws Exception {
 
-			beanValidator.validate(sampleVO, bindingResult);
+			beanValidator.validate(boardVO, bindingResult);
 
 			if (bindingResult.hasErrors()) {
-				model.addAttribute("sampleVO", sampleVO);
-				return "sample/egovSampleRegister";
+				model.addAttribute("boardVO", boardVO);
+				return "board/egovBoardRegister";
 			}
 
-			boardService.updateBoard(sampleVO);
+			boardService.updateBoard(boardVO);
 			status.setComplete();
-			return "forward:/egovSampleList.do";
+			return "forward:/egovBoardList.do";
 		}
 
 	/**

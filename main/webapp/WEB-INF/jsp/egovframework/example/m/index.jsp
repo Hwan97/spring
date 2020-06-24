@@ -1,4 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+
 <!DOCTYPE html>
 <html>
 	<head>
@@ -44,6 +49,7 @@
 			
 			<div class="side">
 				<!-- news S -->
+				<form:form commandName="boardVO" id="listForm" name="listForm" method="post">
 				<div class="news">
 					<div class="news_label">NEWS</div>
 					<div class="news_plus">
@@ -51,16 +57,16 @@
 					</div>
 					<div class="news_subject">
 						<a href="./customer_center/view.jsp">
-							다양하고 뛰어난 기술 서버 출시 ver3.8 각종 서버관리 업무를 수행하는 소프트웨어
+							${boardList.name}								 												
 						</a>
 					</div>
-					<div class="news_date">2020-02-06</div>
+					<div class="news_date">${boardList.datetime}</div>
 					<p class="news_content">
-						다양하고 뛰어난 기술 서버 출시 ver3.8 각종 서버관리 업무를 수행하는 소프트웨어를 출시 했습니다.ver3.8 각종 서버관리 업무를 수행하는 소프트웨어를 출시 했습니다.
+						${boardList.description}
 					</p>
 				</div>
 				<!-- news E -->
-
+</form:form>
 				<div class="service">
 					<!-- customer center S -->
 					<div class="customer">

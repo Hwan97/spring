@@ -323,9 +323,7 @@
                                 <th scope="col">조회수</th>
                             </tr>
                         </thead>
-                        <tbody>
-           
-                        
+                        <tbody>                                   
                       <c:forEach var="result" items="${resultList}" varStatus="status">
             			<tr>
             				<td align="center" class="listtd"><c:out value="${paginationInfo.totalRecordCount+2 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}"/></td>
