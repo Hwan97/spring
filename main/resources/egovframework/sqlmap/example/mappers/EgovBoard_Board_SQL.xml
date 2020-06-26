@@ -20,14 +20,14 @@
 				  , DESCRIPTION
 				  <!-- , USE_YN
 				  , REG_USER -->
-				  , HITCOUNTER				  				   
+				  , HITCOUNTER					  
 				  )
 			VALUES ( #{id}
 				  , #{name}
 				  , #{description}
 				  <!-- , #{useYn}
 				  , #{regUser} -->
-				  , #{hitCounter}
+				  , #{hitCounter}				 
 				  )
 
 	</insert>
@@ -52,15 +52,14 @@
 
 	<select id="selectBoard" resultMap="board">
 			SELECT
-				ID, NAME, DESCRIPTION ,HITCOUNTER ,DATETIME
+				ID, NAME, DESCRIPTION ,HITCOUNTER ,DATETIME			  				   
 			FROM BOARD
 			WHERE ID=#{id}
 	</select>
 	
 	<!-- 최신글 -->
 	<select id="selectMainBoard"  resultMap="board">
-			SELECT * FROM(SELECT ID, NAME, DESCRIPTION ,HITCOUNTER ,DATETIME FROM BOARD ORDER BY DATETIME DESC) WHERE  ROWNUM = 1 
-			
+			SELECT * FROM(SELECT ID, NAME, DESCRIPTION ,HITCOUNTER , DATETIME FROM BOARD ORDER BY DATETIME DESC) WHERE  ROWNUM = 1 			
 	</select>
 
 	<select id="selectBoardList" parameterType="searchVO" resultType="egovMap">

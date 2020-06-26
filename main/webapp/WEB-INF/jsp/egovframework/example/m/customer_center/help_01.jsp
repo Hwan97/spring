@@ -1,4 +1,4 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
@@ -11,7 +11,8 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1.0">
 		<meta charset="utf-8">
 		<title>진진시스템(주)</title>
-		<link rel="stylesheet" type="text/css" href="./css/m/subpage.css">		
+		<link rel="stylesheet" type="text/css" href="./css/m/subpage.css">
+		<link rel="stylesheet" type="text/css" href="./css/m/reset.css">			
 		<script src="http://code.jquery.com/jquery-latest.min.js"></script>
 		<script src="./js/main.js"></script>
 		<script src="./js/menu_link.js"></script>
@@ -70,7 +71,7 @@
             });
         </script>
         <% }  %>
-			<%!
+<%-- 			<%!
    public String getClientIP(HttpServletRequest request) {
        String ip = request.getHeader("X-FORWARDED-FOR");
        if (ip == null || ip.length() == 0) ip = request.getHeader("Proxy-Client-IP");
@@ -80,26 +81,29 @@
      }
 
 		String AllowIp[] = { "0:0:0:0:0:0:0:1", "127.0.0.1", "192.168.7.148", "192.168.7.182", "192.168.7.200"};
- %> 
+ %>  --%>
 	</head>
 	
 <body>
-    <form:form commandName="searchVO" id="listForm" name="listForm" method="post">
+    
 <div id="wrap">
  		<!-- header S -->
 
         <!-- header S -->
-        <%-- <%@ include file="../inc/header.jsp" %> --%>
+        <%@ include file="../inc/header.jsp" %>
         <!-- header E -->
 
         <!-- main visual S -->
-        <%-- <%@ include file="../inc/main_visual.jsp" %> --%>
+        <%@ include file="../inc/main_visual.jsp" %>
         <!-- main visual E -->
 		
 		<!-- container wrap S -->
 		<div class="container_wrap clearfix">
 
 			<!-- content S -->
+			<form:form commandName="searchVO" id="listForm" name="listForm" method="post">
+			        <input type="hidden" name="selectedId" />
+			
             <div class="content">
                 <div class="content_header">공지사항</div>
                 <div class="content_body">
@@ -131,12 +135,12 @@
         			</c:forEach> 
                         </tbody>
                     </table>
-                     <div id="paging" class="paging">
+                     <div id="paging" class="paging" >
         		<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="fn_egov_link_page"  />
         		<!-- <li class="write_btn"><a href="javascript:fn_egov_addView();">글작성</a></li> -->
         		<form:hidden path="pageIndex" />
         	</div>
-                    <div class="search">
+                    <div class="search" style="dispaly:block">
 						<select id="searchCondition" name="searchCondition" title="조건선택">
 							<option value="all">전체</option>
 							<option value="subject">제목</option>
@@ -146,7 +150,7 @@
 							<input id="searchKeyword" name="searchKeyword" title="검색어입력" class="inputText" type="text" value="">
 							<input type="submit" value="검색" title="검색" class="btn search_btn">
 						</div>
-						<input type="reset" value="초기화" title="초기화" class="btn reset_btn">
+						<!-- <input type="reset" value="초기화" title="초기화" class="btn reset_btn"> -->
 					</div>
                 </div>
 			</div>
@@ -156,7 +160,7 @@
 		<!-- container wrap E -->
 
         <!-- footer S -->
-        <%-- <%@ include file="../inc/footer.jsp" %> --%>
+        <%@ include file="../inc/footer.jsp" %>
         <!-- footer E -->
     </div>
   

@@ -21,6 +21,61 @@
 		<script src="<c:url value="/js/slider.js"/>" > </script>	
 		<script src="<c:url value="/js/menu_link.js"/>" > </script>
 		
+				<script>
+				/* $(function () {
+				var red = $('.news_content').children();
+				if(red.children.length) {
+				console.log(red)
+				
+				for(var i = 0; i < red.length; i++ ) {
+					red[i].removeAttr('style');
+				}					 
+				console.log(red[i]);
+				}
+				}) */
+	window.onload = function(){
+		/* var reda = $('#news_content').children().removeAttr("style");
+		$('.news_content').children().removeAttr("class"); */		
+		
+/* 		
+		 var red = document.getElementById('news_content').childNodes;	 	
+	 	red[0].removeAttrubute('style');
+		console.log(red)
+		 */		 
+		 
+		 
+/* 		 var red = document.getElementById('news_content');
+		var children = red.getElementsByTagName("*");
+		if(red.children.length){
+		console.log('자식있2음')		 	   	
+	   console.log(children)
+	   console.log(red)
+	   for (var i = 0; i < children1.length; i++) {	      	   		 
+	   		children1[i].removeAttribute('style');
+	   		children1[i].removeAttribute('align');
+	   		console.log(children[i])
+	   }}
+		console.log(red)
+		console.log(children[i]) 
+  */
+var red = document.getElementById('news_content');
+var children = red.getElementsByTagName("*");
+	if(children.length)
+// 그래서, 먼저 개체가 찼는 지(자식 노드가 있는 지) 검사
+ {
+	console.log('자식있음')
+	   /* console.log(red + "asd") */
+   console.log(children[i])
+   for (var i = 0; i < children.length; i++) {	      
+   		children[i].removeAttribute("style");
+   		children[i].removeAttribute("align");
+   }}   
+};
+
+
+
+	</script>
+		
 <!-- 	<script type="text/javaScript" language="javascript" defer="defer">
  
         /* 글 수정 화면 function */
@@ -143,7 +198,7 @@
 							<%-- ${boardList.name} --%>								 												
 						</div>
 						<div class="news_date">
-						${boardList.datetime}
+						<form:input path="datetime" class="registerDate" readonly="true" />
 						<%-- <td align="left" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" ><c:out value="${boardList.name}"/>&nbsp;</td>
 						<td align="center" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')"><c:out value="${boardList.id}"/></a></td> --%>
 					
@@ -214,48 +269,6 @@
 	</div>
 
 	<!-- script -->
-		<script>
-	window.onload = function(){
-		var reda = $('#news_content').children().removeAttr("style");
-		$('.news_content').children().removeAttr("class");		
-		
-/* 		
-		 var red = document.getElementById('news_content').childNodes;	 	
-	 	red[0].removeAttrubute('style');
-		console.log(red)
-		 */
-		
-		var red = document.getElementById('news_content');	 	 		
-		if(red.children.length)
-	// 그래서, 먼저 개체가 찼는 지(자식 노드가 있는 지) 검사
-	 {
-		console.log('자식있음')
-		   /* console.log(red + "asd") */
-	   var children = red.children;
-	   console.log(children[i])
-	   for (var i = 0; i < children.length; i++) {	      
-	   		children[i].style.display = null;
-	   }}   
-	
-	
-};
 
-
-	
-   // children[i]로 각 자식에 무언가를 함 
-   // 주의: 목록은 유효해(live), 자식 추가나 제거는 목록을 바꿈	
-	
-	
-	
-		
-	
-	
-	/* if (demodiv.hasChildNodes()){
-	    var children = demodive.childNodes;
-	    for(var i=0; i<children.length; i++){
-	        outputString += "자식노드: " + children[i].nodeName + "<br />";
-	    }
-	} */
-	</script>
 </body>
 </html>

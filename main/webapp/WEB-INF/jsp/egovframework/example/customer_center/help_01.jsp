@@ -338,23 +338,7 @@
         			</c:forEach> 
                         </tbody>
                     </table>
-                <!-- <ul class="paging">
-                        <li class="first"><a href="#"></a></li>
-                        <li class="prev"><a href="#"></a></li>
-                        <li class="num start active"><a href="#">1</a></li>
-                        <li class="num"><a href="#">2</a></li>
-                        <li class="num"><a href="#">3</a></li>
-                        <li class="num"><a href="#">4</a></li>
-                        <li class="num"><a href="#">5</a></li>
-                        <li class="num"><a href="#">6</a></li>
-                        <li class="num"><a href="#">7</a></li>
-                        <li class="num"><a href="#">8</a></li>
-                        <li class="num"><a href="#">9</a></li>
-                        <li class="num end"><a href="#">10</a></li>
-                        <li class="next"><a href="#"></a></li>
-						<li class="last"><a href="#"></a></li>
-						
-                    </ul> -->
+          
                  <div id="paging" class="paging">
         		<ui:pagination paginationInfo = "${paginationInfo}" type="image" jsFunction="fn_egov_link_page"  />
         		<li class="write_btn"><a href="javascript:fn_egov_addView();">글작성</a></li>
