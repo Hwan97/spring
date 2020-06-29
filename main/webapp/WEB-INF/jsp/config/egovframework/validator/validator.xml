@@ -15,14 +15,7 @@
                 <arg0 key="title.board.description" />
             </field>            
             
-			<field property="hitcounter" depends="required">
-                <arg0 key="title.board.hitcounter" />
-            </field>
-            
-            <field property="datetime" depends="required">
-                <arg0 key="title.board.datetime" />
-            </field>
-            
+		
         	<!--
             <field property="regUser" depends="required">
         		<arg0 key="title.board.regUser" />

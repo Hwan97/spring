@@ -3,6 +3,7 @@
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <html>
 
 	<head>
@@ -182,9 +183,7 @@ var children = red.getElementsByTagName("*");
 				<div class="side">
 					<!-- news S -->			
 					<form:form commandName="boardVO" id="detailForm" name="detailForm" method="post">
-							  <%-- <form:input path="id" cssClass="essentiality" maxlength="10" readonly="true" /> --%>
-							  
-					<%-- <form:form commandName="boardVO" id="detailForm" name="detailForm" class="write_frm"> --%>
+							  <%-- <form:input path="id" cssClass="essentiality" maxlength="10" readonly="true" /> --%>							 					
 					<div class="news">
 						<div class="news_label">NEWS
 						<%-- ${boardList.id} --%>
@@ -193,27 +192,21 @@ var children = red.getElementsByTagName("*");
 							<a href="javascript:GoSitePageLink('customer_center');">더보기</a>	<!-- MORE button -->
 						</div>
 						<div class="news_subject">
-							<a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" ><c:out value="${boardList.id}"/>&nbsp;
-							<%-- ${boardList.name} --%>								 												
+							<%-- <a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" ><c:out value="${boardList.id}"/>&nbsp; --%>
+							<a href="javascript:GoSitePageLink('customer_center');">${boardList.name}</a>  								 												
 						</div>
-						<div class="news_date">
-						<form:input path="datetime" class="registerDate" readonly="true" />
-						${boardList.datetime}
-						<td align="left" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" ><c:out value="${boardList.name}"/>&nbsp;</td>
-						<td align="center" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')"><c:out value="${boardList.id}"/></a></td>
-					
+						<div class="news_date">											
+						<fmt:formatDate pattern="yyyy-MM-dd" value="${boardList.datetime}" />											
 						</div>
 						<div class="news_content" style="background:white;" id="news_content">
-							${boardList.description}
-														<a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" id="selectedId"><c:out value="${boardList.id}"/></a>
-														<span value="${boardList.id}" onclick="fn_egov_select()" name="selectedId" id="selectedId"></span>																				
+						<a href="javascript:GoSitePageLink('customer_center');">${boardList.description}</a>
+									
 						</div>
-					</div>
-        			
+					</div>        			
 					</form:form>
-					<form:form commandName="searchVO" id="listForm" name="listForm" method="post">
-						<%-- <a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" ><c:out value="${boardList.name}"/>&nbsp; --%>
-						<td align="left" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${result.id}"/>')" name="selectedId" ><c:out value="${result.name}"/>&nbsp;</td>            				
+					<form:form commandName="searchVO" id="listForm" name="listForm" method="post">					
+						<%-- <a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" ><c:out value="${boardList.name}"/>&nbsp;
+						<td align="left" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${result.id}"/>')" name="selectedId" ><c:out value="${result.name}"/>&nbsp;</td>            				 --%>
 					</form:form>							
 					<!-- news E -->
 					<!-- Remote support Service S -->
@@ -224,7 +217,6 @@ var children = red.getElementsByTagName("*");
 						<div class="remote_btn"><a href="https://113366.com/jinjin" target="_blank">원격지원 시작</a></div>
 					</div>
 					<!-- Remote support Service E -->
-
 					<!-- customer center S -->
 					<div class="customer">
 						<div class="customer_EN">Customer Center</div>

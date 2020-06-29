@@ -166,12 +166,6 @@ public class BoardVO extends BoardDefaultVO {
 	/** 내용 */
 	private String description;
 
-	/** 사용여부 */
-	/*private String useYn;
-
-	*//** 등록자 *//*
-	private String regUser;*/
-	
 	private int hitCounter;
 	
 	private Date datetime;
@@ -200,21 +194,7 @@ public class BoardVO extends BoardDefaultVO {
 		this.description = description;
 	}
 
-	/*public String getUseYn() {
-		return useYn;
-	}
-
-	public void setUseYn(String useYn) {
-		this.useYn = useYn;
-	}
-
-	public String getRegUser() {
-		return regUser;
-	}
-
-	public void setRegUser(String regUser) {
-		this.regUser = regUser;
-	}*/
+	
 		
 	public int gethitCounter() {
 		return hitCounter;
