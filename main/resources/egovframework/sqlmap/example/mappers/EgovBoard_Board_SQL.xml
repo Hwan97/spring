@@ -59,7 +59,7 @@
 	
 	<!-- 최신글 -->
 	<select id="selectMainBoard"  resultMap="board">
-			SELECT * FROM(SELECT ID, NAME, DESCRIPTION ,HITCOUNTER , DATETIME FROM BOARD ORDER BY DATETIME DESC) WHERE  ROWNUM = 1 			
+			SELECT * FROM(SELECT ID, NAME, DESCRIPTION ,HITCOUNTER ,DATETIME    FROM BOARD ORDER BY DATETIME DESC) where ROWNUM = 1 
 	</select>
 
 	<select id="selectBoardList" parameterType="searchVO" resultType="egovMap">

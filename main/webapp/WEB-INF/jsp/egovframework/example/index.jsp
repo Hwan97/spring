@@ -76,20 +76,16 @@ var children = red.getElementsByTagName("*");
 
 	</script>
 		
-<!-- 	<script type="text/javaScript" language="javascript" defer="defer">
+	<script type="text/javaScript" language="javascript" defer="defer">
  
         /* 글 수정 화면 function */
         function fn_egov_select(id) {
-        	console.log('asd')
+        	
         	document.detailForm.selectedId.value = id;
            	document.detailForm.action = "<c:url value='/updateBoardView.do'/>";
            	document.detailForm.submit();
         }
-        
-        function fn_egov_select(id) {
-        	document.listForm.selectedId.value = id;
-           	document.listForm.action = "<c:url value='/updateSampleView.do'/>";
-           	document.listForm.submit();
+               
         
         /* 글 등록 화면 function */
         function fn_egov_addView() {
@@ -111,7 +107,7 @@ var children = red.getElementsByTagName("*");
         }
         
 
-	</script>	 -->
+	</script>	
 	
 	</head>
 	
@@ -185,41 +181,34 @@ var children = red.getElementsByTagName("*");
 				<!-- right side -->
 				<div class="side">
 					<!-- news S -->			
-					<form:form commandName="boardVO" id="listForm" name="listForm" method="post">
+					<form:form commandName="boardVO" id="detailForm" name="detailForm" method="post">
+							  <%-- <form:input path="id" cssClass="essentiality" maxlength="10" readonly="true" /> --%>
 							  
 					<%-- <form:form commandName="boardVO" id="detailForm" name="detailForm" class="write_frm"> --%>
 					<div class="news">
-						<div class="news_label">NEssWSs</div>
+						<div class="news_label">NEWS
+						<%-- ${boardList.id} --%>
+						</div>
 						<div class="news_plus">
 							<a href="javascript:GoSitePageLink('customer_center');">더보기</a>	<!-- MORE button -->
 						</div>
 						<div class="news_subject">
-							<a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" ><c:out value="${boardList.name}"/>&nbsp;
+							<a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" ><c:out value="${boardList.id}"/>&nbsp;
 							<%-- ${boardList.name} --%>								 												
 						</div>
 						<div class="news_date">
 						<form:input path="datetime" class="registerDate" readonly="true" />
-						<%-- <td align="left" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" ><c:out value="${boardList.name}"/>&nbsp;</td>
-						<td align="center" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')"><c:out value="${boardList.id}"/></a></td> --%>
+						${boardList.datetime}
+						<td align="left" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" ><c:out value="${boardList.name}"/>&nbsp;</td>
+						<td align="center" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')"><c:out value="${boardList.id}"/></a></td>
 					
 						</div>
 						<div class="news_content" style="background:white;" id="news_content">
 							${boardList.description}
-														<%-- <a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" id="selectedId"><c:out value="${boardList.id}"/></a>
-														<span value="${boardList.id}" onclick="fn_egov_select()" name="selectedId" id="selectedId"></span> --%>																				
+														<a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" id="selectedId"><c:out value="${boardList.id}"/></a>
+														<span value="${boardList.id}" onclick="fn_egov_select()" name="selectedId" id="selectedId"></span>																				
 						</div>
 					</div>
-			
-            			<tr>
-            				<td align="center" class="listtd"><c:out value="${paginationInfo.totalRecordCount+2 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}"/></td>
-            				<%-- <td align="center" class="listtd"><c:out value="${result.id}"/></a></td> --%>
-            				<td align="left" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${result.id}"/>')" name="selectedId" ><c:out value="${result.name}"/>&nbsp;</td>            				
-            				<%-- <td align="center" class="listtd"><c:out value="${result.description}"/>&nbsp;</td> --%>
-            				<%-- <td align="center" class="listtd"><c:out value="${result.regUser}"/>&nbsp;</td> --%>
-            				<td align="center" class="listtd"><c:out value="${result.datetime}"/>&nbsp;</td>
-            				<td align="center" class="listtd"><c:out value="${result.hitcounter}"/>&nbsp;</td>
-            				<%-- <td align="center" class="listtd"><c:out value="${result.totCnt}"/>&nbsp;</td> --%>
-            			</tr>
         			
 					</form:form>
 					<form:form commandName="searchVO" id="listForm" name="listForm" method="post">

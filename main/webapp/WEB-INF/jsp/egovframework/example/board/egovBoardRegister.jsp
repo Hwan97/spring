@@ -125,10 +125,7 @@
         
         %>
         
-        <script language="javascript">
-        $(document).ready(function () {       	 
-        });
-        </script>
+     
         
     <%  
         } 
@@ -269,6 +266,7 @@
     </ul>
 </div>
 <%-- <%@ include file="./menu.jsp" %> --%>
+<form:form commandName="boardVO" id="detailForm" name="detailForm" class="write_frm">
            <div class="content">
                 <div class="content_header">
                     <h2>공지사항</h2>
@@ -292,7 +290,7 @@
                             <col>
                         </colgroup>                            		
                         <tr class="disabled">
-                         <form:input path="id" cssClass="essentiality" maxlength="10" readonly="true"  style="display: none"/> 
+                         <form:input path="id" cssClass="essentiality" readonly="true"  style="display: none"/> 
                             <th scope="row">등록일</th>
                             <td>
                             <form:input path="datetime" class="registerDate" readonly="true" />
@@ -344,7 +342,7 @@
     		<a href="#" class="btn goList " onclick="javascript:history.back();">목록</a>
     				<c:if test="${registerFlag == 'modify'}">
     				<input type="button" id="saveBtn" class="btn save show admin-btn" onclick="submitContents()" value="수정">
-    				<input type="button" id="saveBtn" class="btn save" onclick="submitContents()" value="저장">
+    				<input type="button" id="saveBtn" class="btn save" onclick="javascript:fn_egov_save();" value="저장">
     		<a href="#" class="btn goList show tooltiptext admin-btn" onclick="javascript:fn_egov_delete();" >삭제</a></br></br>
     		<span title="실제로 어떻게 게시되는지 게시물을 보기위해 에디터를 끕니다." class="btn editor-load admin-btn">토글</span>
     			</c:if>
@@ -376,47 +374,8 @@
     	</div>
                 </div>
 			</div> 
-    	<!-- 타이틀 -->
-    	<%-- <div id="title">
-    		<ul>
-    			<li><img src="<c:url value='/images/egovframework/example/title_dot.gif'/>" alt=""/>
-                    <c:if test="${registerFlag == 'create'}"><spring:message code="button.create" /></c:if>
-                    <c:if test="${registerFlag == 'modify'}"><spring:message code="button.modify" /></c:if>
-                </li>
-    		</ul>
-    	</div>
-    	<!-- // 타이틀 -->
-    	<div id="table">
-    	     <table class="view_tbl">
-    		<colgroup>
-    			<col width="150"/>
-    			<col width="?"/>
-    		</colgroup>
-    		<c:if test="${registerFlag == 'modify'}">
-        		<tr>
-        			<td class="tbtd_caption"><label for="id"></label></td>
-        			<td class="tbtd_content">
-        				<form:input path="id" cssClass="essentiality" maxlength="10" readonly="true" />
-        			</td>
-        		</tr>
-    		</c:if>
-    		<tr>
-    			<td class="tbtd_caption"><label for="name"><spring:message code="title.board.name" /></label></td>
-    			<td class="tbtd_content">
-    				<form:input path="name" maxlength="30" cssClass="txt"/>
-    				&nbsp;<form:errors path="name" />
-    			</td>
-    		</tr>
-    		<tr>
-    			<td class="tbtd_caption"><label for="description"><spring:message code="title.board.description" /></label></td>
-    			<td class="tbtd_content">
-    				<form:textarea path="description" rows="5" cols="58" />&nbsp;<form:errors path="description" />
-    				<form:input path="hitCounter"/>
-                </td>
-    		</tr>
-    	</table>
-      </div> --%>  
     </div>
+    </form:form>
    
     <!-- 검색조건 유지 -->
     <%-- <input type="hidden" name="searchCondition" value="<c:out value='${searchVO.searchCondition}'/>"/>

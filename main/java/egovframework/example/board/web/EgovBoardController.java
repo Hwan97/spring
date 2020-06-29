@@ -218,7 +218,7 @@ public class EgovBoardController {
 
 		boardService.insertBoard(boardVO);
 		status.setComplete();
-		return "forward:/customer_center/help_01.do";
+		return "forward:/help_01.do";
 	}
 	
 	/**
@@ -230,19 +230,28 @@ public class EgovBoardController {
 	  * @exception Exception
 	 */
 	
+	// @RequestMapping("/updateBoardView.do")
+	// public String updateBoardView(HttpServletRequest request, HttpServletResponse response, @RequestParam("selectedId") String id, @ModelAttribute("searchVO") BoardDefaultVO searchVO, Model model) throws Exception {
+	// 	BoardVO boardVO = new BoardVO();
+	// 	boardVO.setId(id);
+	// 	boardService.counterBoard(boardVO);
+	// 	// 변수명은 CoC 에 따라 boardVO
+	// 	model.addAttribute(selectBoard(boardVO, searchVO));
+		
+	// 	Device device = DeviceUtils.getCurrentDevice(request);			
+	// 	if(device.isMobile()) 		 	return "m/customer_center/view"; // check : 바로 return이 아니고 단순히 viewName만 처리
+		
+	// 	return "board/egovBoardRegister";
+	// } 
+
 	@RequestMapping("/updateBoardView.do")
-	public String updateBoardView(HttpServletRequest request, HttpServletResponse response, @RequestParam("selectedId") String id, @ModelAttribute("searchVO") BoardDefaultVO searchVO, Model model) throws Exception {
+	public String updateBoardView(@RequestParam("selectedId") String id, @ModelAttribute("searchVO") BoardDefaultVO searchVO, Model model) throws Exception {
 		BoardVO boardVO = new BoardVO();
 		boardVO.setId(id);
-		boardService.counterBoard(boardVO);
 		// 변수명은 CoC 에 따라 boardVO
 		model.addAttribute(selectBoard(boardVO, searchVO));
-		
-		Device device = DeviceUtils.getCurrentDevice(request);			
-		if(device.isMobile()) 		 	return "m/customer_center/view"; // check : 바로 return이 아니고 단순히 viewName만 처리
-		
 		return "board/egovBoardRegister";
-	} 
+	}
 	
 	/**
 	 * 글을 조회한다.
@@ -264,7 +273,7 @@ public class EgovBoardController {
 	 * @return "forward:/customer_center/help_01.do"
 	 * @exception Exception
 	 */
-		@RequestMapping("/updateBoard.do")
+		@RequestMapping(value = "/updateBoard.do", method = RequestMethod.POST)
 		public String updateBoard(@ModelAttribute("searchVO") BoardDefaultVO searchVO, BoardVO boardVO, BindingResult bindingResult, Model model, SessionStatus status)
 				throws Exception {
 
@@ -277,7 +286,7 @@ public class EgovBoardController {
 
 			boardService.updateBoard(boardVO);
 			status.setComplete();
-			return "forward:/egovBoardList.do";
+			return "forward:/help_01.do";
 		}
 
 	/**
@@ -292,7 +301,7 @@ public class EgovBoardController {
 	public String deleteBoard(BoardVO boardVO, @ModelAttribute("searchVO") BoardDefaultVO searchVO, SessionStatus status) throws Exception {
 		boardService.deleteBoard(boardVO);
 		status.setComplete();
-		return "forward:/customer_center/help_01.do";
+		return "forward:/help_01.do";
 	}
 
 
