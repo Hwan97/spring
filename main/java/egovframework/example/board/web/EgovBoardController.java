@@ -80,13 +80,6 @@ public class EgovBoardController {
 	 * @return "egovBoardList"
 	 * @exception Exception
 	 */
-//	@RequestMapping(value = "/main.do")
-//	public String gotoMain(HttpServletRequest request) {
-//		Device device = DeviceUtils.getCurrentDevice(request);
-//		if(device.isMobile()) 		return "m/index";
-//		else if(device.isTablet()) 	return "index";
-//		else 						return "index";
-//	}
 
 	 	@RequestMapping(value = "/main.do")
 		public String selectMainBoard(HttpServletRequest request, BoardVO boardVO, @ModelAttribute("searchVO") BoardDefaultVO searchVO, Model model) throws Exception {
@@ -148,9 +141,6 @@ public class EgovBoardController {
 	@RequestMapping(value = {"/egovBoardList.do", "/help_01"})
 	public String selectBoardList(HttpServletRequest request, HttpServletResponse response, @ModelAttribute("searchVO") BoardDefaultVO searchVO, ModelMap model) throws Exception {
 		
-		
-	
-
 		/** EgovPropertyService.board */
 		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
 		searchVO.setPageSize(propertiesService.getInt("pageSize"));
@@ -244,14 +234,6 @@ public class EgovBoardController {
 		return "board/egovBoardRegister";
 	} 
 
-	// @RequestMapping("/updateBoardView.do")
-	// public String updateBoardView(@RequestParam("selectedId") String id, @ModelAttribute("searchVO") BoardDefaultVO searchVO, Model model) throws Exception {
-	// 	BoardVO boardVO = new BoardVO();
-	// 	boardVO.setId(id);
-	// 	// 변수명은 CoC 에 따라 boardVO
-	// 	model.addAttribute(selectBoard(boardVO, searchVO));
-	// 	return "board/egovBoardRegister";
-	// }
 	
 	/**
 	 * 글을 조회한다.

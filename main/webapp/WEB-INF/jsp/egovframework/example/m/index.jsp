@@ -1,8 +1,9 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page languag	e="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"      uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form"   uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="ui"     uri="http://egovframework.gov/ctl/ui"%>
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html>
@@ -57,19 +58,21 @@
 					</div>
 					<div class="news_subject">
 						<a href="./customer_center/view.jsp">
-							${boardList.name}								 												
+							<a href="javascript:GoSitePageLink('customer_center');">${boardList.name}</a>								 												
 						</a>
 					</div>
-					<div class="news_date">${boardList.datetime}</div>
-					<p class="news_content">
-						${boardList.description}
-					</p>
+					<div class="news_date">
+					<fmt:formatDate pattern="yyyy-MM-dd" value="${boardList.datetime}" />
+					</div>
+					<div class="news_content">
+						<a href="javascript:GoSitePageLink('customer_center');">${boardList.description}</a>
+					</div> 
 				</div>
 				<!-- news E -->
-</form:form>
+				</form:form>
 				<div class="service">
 					<!-- customer center S -->
-					<div class="customer">
+					<div class="custo1mer">
 						<div class="customer_EN">Customer Center</div>
 						<div class="customer_KO">고객센터</div>
 						<div class="customer_call">02<i></i>447<i></i>5967</div>

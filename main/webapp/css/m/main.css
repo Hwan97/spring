@@ -21,7 +21,7 @@
 .container_wrap .side .news .news_subject { display: block; margin: 32px 0 0 15px; font-size: 1em; font-family: 'NanumGothic-Bold'; line-height: 25px; overflow: hidden; text-overflow: ellipsis; white-space: normal; word-break: keep-all; width: 90%;  max-width: 500px; }
 .container_wrap .side .news .news_subject:hover { text-decoration: underline; cursor: pointer; }
 .container_wrap .side .news .news_date { display: block; height: 20px; padding: 22px 0 14px; font-size: 0.9em; color: #a8a8a8; margin-left: 15px; }
-.container_wrap .side .news .news_content { width: 90%; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; word-wrap: break-word; font-size: .9em; line-height: 20px; height: 60px; margin: 15px 0 15px 15px; max-width: 500px; }
+.container_wrap .side .news .news_content { width: 90%; overflow: hidden; text-overflow: ellipsis; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; white-space: normal; word-break: keep-all; font-size: .9em; line-height: 20px; height: 60px; margin: 15px 0 15px 15px; max-width: 500px; }
 
 /* 고객센터 */
 .container_wrap .side .service { background-color: #f7f7f7; }

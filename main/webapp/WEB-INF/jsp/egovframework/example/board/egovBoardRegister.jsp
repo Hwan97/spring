@@ -146,7 +146,7 @@
 	        return ip;
 	    }
 
-		String AllowIp[] = { "0:0:0:0:0:0:0:1", "127.0.0.1", "192.168.7.148", "192.168.7.182", "192.168.7.200"};
+		String AllowIp[] = { "0:0:0:0:0:0:0:1", "127.0.0.1", "192.168.7.148", "192.168.7.182" };
  %>
 
 <div class="header_wrap">
@@ -294,20 +294,20 @@
                             <th scope="row">등록일</th>
                             <td>
                             <form:input path="datetime" class="registerDate" readonly="true" />
-                            <form:errors path="datetime"/>
+                            <%-- <form:errors path="datetime"/> --%>
                             </td>
                             <th scope="row">조회수</th>
                             <td>        
                             <form:input path="hitCounter"  readonly="true" />
-                            <form:errors path="hitCounter"/>
+                            <%-- <form:errors path="hitCounter"/> --%>
                             </td>
                         </tr>
                         <tr>
                             <th scope="row">제목</th>
                             <td colspan="3">
                             	    <%-- <form:input path="name" maxlength="30" cssClass="txt"/> --%>
-                            	    <form:input path="name" id="txtSubject" class="subject" placeholder="제목을 입력하세요." required="required" style="width: 100%;"/>
-                            	    <form:errors path="name"/>                            	    
+                            	    <form:input path="name" id="txtSubject" class="subject" placeholder="제목을 입력하세요." required="required" style="width: 100%;" maxlength="100"/>
+                            	    <%-- <form:errors path="name"/> --%>                            	    
                             </td>
                         </tr>
                         <c:if test="${registerFlag == 'modify'}">        		
@@ -316,7 +316,7 @@
     							  <%-- <form:input  path="description" class="txtContent hide" style="width: 100%; height: 450px; font-size: 1em; display:none;" /> --%>
     							  <div class="show admin-content">
     							  <form:input  path="description" id="txtContent" class="txtContent" style="width: 100%; height: 450px; font-size: 1em;" />
-    							  <form:errors path="description"/>
+    							  <%-- <form:errors path="description"/> --%>
     							  </div>
     							  <div class="hide user-content"  style="display:none">
     							  ${boardVO.description}
@@ -327,8 +327,8 @@
                         <c:if test="${registerFlag == 'create'}">    		
                         <tr>
                             <td class="view_contents write_contents" colspan="4">                                										    							    
-    							<form:input  path="description" id="txtContent" rows="10" cols="100" style="width: 100%; height: 450px; font-size: 1em; " placeholder="제목을 입력하세요." required="required" />
-    							<form:errors path="description"/>
+    							<form:input  path="description" id="txtContent" rows="10" cols="100" style="width: 100%; height: 450px; font-size: 1em; " placeholder="제목을 입력하세요." required="required"/>
+    							<%-- <form:errors path="description"/> --%>
                             </td>
                         </tr>
                         </c:if>

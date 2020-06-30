@@ -140,18 +140,23 @@
         		<!-- <li class="write_btn"><a href="javascript:fn_egov_addView();">글작성</a></li> -->
         		<form:hidden path="pageIndex" />
         	</div>
-                    <div class="search" style="dispaly:block">
-						<select id="searchCondition" name="searchCondition" title="조건선택">
-							<option value="all">전체</option>
-							<option value="subject">제목</option>
-							<option value="content">내용</option>
-						</select>
-						<div class="input_wrap">
-							<input id="searchKeyword" name="searchKeyword" title="검색어입력" class="inputText" type="text" value="">
-							<input type="submit" value="검색" title="검색" class="btn search_btn">
-						</div>
-						<!-- <input type="reset" value="초기화" title="초기화" class="btn reset_btn"> -->
-					</div>
+               	<div id="search" class="search" style="display:block !important">
+        	
+        			    <label for="searchCondition" style="visibility:hidden;"></label>
+        				<form:select path="searchCondition" cssClass="use" id="searchCondition" title="조건선택">
+        					<form:option value="1" label="제목" />
+        					<form:option value="0" label="내용" />
+        				<form:option value="2" label="전체" />        				
+        				</form:select>
+        	
+        			<label for="searchKeyword" style="visibility:hidden;display:none;"><spring:message code="search.keyword" /></label>
+                        <form:input path="searchKeyword" cssClass="txt" class="inputText" />
+       			        	          
+        	                <!-- <a href="javascript:fn_egov_selectList();" class="btn search_btn">검색</a> -->
+        	                <input type="submit" value="검색" title="검색" class="btn search_btn" onclick="javascript:fn_egov_selectList()">
+        	                <input type="reset" value="초기화" title="초기화" class="btn reset_btn">        	                        	            
+    
+        	</div>
                 </div>
 			</div>
 			<!-- content E -->
