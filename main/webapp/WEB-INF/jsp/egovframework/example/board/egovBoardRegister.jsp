@@ -4,6 +4,7 @@
 <%@ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %>
 <%@ taglib prefix="spring"    uri="http://www.springframework.org/tags"%>
 
+
 <%
   /*
   * @Class Name : egovBoardRegister.jsp

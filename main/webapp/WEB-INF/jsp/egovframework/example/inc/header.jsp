@@ -1,5 +1,28 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
+  <%
+        boolean isAllow = false;
+        String ip = getClientIP(request);
+        for(int i =0; i<AllowIp.length; i++){
+            if(ip.equals(AllowIp[i])){
+                isAllow = true;
+                break;
+            }
+        }
+        System.out.println("UserIP : "+ip+", ALLOW : "+isAllow);
+        if(isAllow){
+    %>
+    <script>
+        $(document).ready(function () {
+        	var url = location.href;
+        	console.log(url)
+            $(".write_btn").css("display","block");
+        });
+    </script>
+    <% }  %>
+
+
 <%!
     public String getClientIP(HttpServletRequest request) {
         String ip = request.getHeader("X-FORWARDED-FOR");
