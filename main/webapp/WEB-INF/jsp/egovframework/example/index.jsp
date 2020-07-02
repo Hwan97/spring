@@ -23,42 +23,9 @@
 		<script src="<c:url value="/js/menu_link.js"/>" > </script>
 		
 				<script>
-				/* $(function () {
-				var red = $('.news_content').children();
-				if(red.children.length) {
-				console.log(red)
 				
-				for(var i = 0; i < red.length; i++ ) {
-					red[i].removeAttr('style');
-				}					 
-				console.log(red[i]);
-				}
-				}) */
 	window.onload = function(){
-		/* var reda = $('#news_content').children().removeAttr("style");
-		$('.news_content').children().removeAttr("class"); */		
-		
-/* 		
-		 var red = document.getElementById('news_content').childNodes;	 	
-	 	red[0].removeAttrubute('style');
-		console.log(red)
-		 */		 
-		 
-		 
-/* 		 var red = document.getElementById('news_content');
-		var children = red.getElementsByTagName("*");
-		if(red.children.length){
-		console.log('자식있2음')		 	   	
-	   console.log(children)
-	   console.log(red)
-	   for (var i = 0; i < children1.length; i++) {	      	   		 
-	   		children1[i].removeAttribute('style');
-	   		children1[i].removeAttribute('align');
-	   		console.log(children[i])
-	   }}
-		console.log(red)
-		console.log(children[i]) 
-  */
+	
 var red = document.getElementById('news_content');
 var children = red.getElementsByTagName("*");
 	if(children.length)
@@ -73,9 +40,7 @@ var children = red.getElementsByTagName("*");
    }}   
 };
 
-
-
-	</script>
+</script>
 		
 	<script type="text/javaScript" language="javascript" defer="defer">
  
@@ -230,20 +195,7 @@ var children = red.getElementsByTagName("*");
 					<!-- customer center E -->
 				</div>
 			</div>
-		</div>
-		<form:form commandName="searchVO" id="listForm" name="listForm" method="post">
-	         <c:forEach var="result" items="${resultList}" varStatus="status">
-            			<tr>
-            				<td align="center" class="listtd"><c:out value="${paginationInfo.totalRecordCount+2 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}"/></td>
-            				<%-- <td align="center" class="listtd"><c:out value="${result.id}"/></a></td> --%>
-            				<td align="left" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${result.id}"/>')" name="selectedId" ><c:out value="${result.name}"/>&nbsp;</td>            				
-            				<%-- <td align="center" class="listtd"><c:out value="${result.description}"/>&nbsp;</td> --%>
-            				<%-- <td align="center" class="listtd"><c:out value="${result.regUser}"/>&nbsp;</td> --%>
-            				<td align="center" class="listtd"><c:out value="${result.datetime}"/>&nbsp;</td>
-            				<td align="center" class="listtd"><c:out value="${result.hitcounter}"/>&nbsp;</td>
-            				<%-- <td align="center" class="listtd"><c:out value="${result.totCnt}"/>&nbsp;</td> --%>
-            			</tr>s
-        			</c:forEach>					</form:form>
+		</div>		
 		<!-- footer S -->
 		<%@ include file="./inc/footer.jsp" %>		
 		<!-- footer E -->

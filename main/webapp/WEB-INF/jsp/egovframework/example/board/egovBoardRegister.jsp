@@ -1,4 +1,5 @@
-<%@ page contentType="text/html; charset=utf-8" pageEncoding="utf-8"%>
+
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"         uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form"      uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="validator" uri="http://www.springmodules.org/tags/commons-validator" %>
@@ -86,186 +87,24 @@
       
       
     </script>
-     <%
-    
-        boolean isAllow = false;
-        String ip = getClientIP(request);
-        for(int i =0; i<AllowIp.length; i++){
-            if(ip.equals(AllowIp[i])){
-                isAllow = true;
-                break;
-            }
-        }
-        System.out.println("현재 접속 IP : "+ip+", ALLOW : "+isAllow);
-        if(!isAllow){ 
-        	
-    %>
-    <script language="javascript">    
-    
-         $(document).ready(function () {
-          	
-        	$('.admin-btn').css('display','none')
-        	$('.subject').attr('disabled', true)
-        	$('.txtContent').attr('disabled', true)
-       	  	$('.admin-content').css('display','none');   
-        	$('.user-content').css('display','block');
-         	console.log('b')
-       	 if(location.href === 'http://121.130.10.5:8080/jinjin/addBoard.do' ) { 
-        		/* if(location.path === 'jinjin/addBoard.do' ){ */
-        		alert('권한이 없습니다.');
-        		history.back(-1);
-        	} else if (location.href === 'http://121.130.10.5:8080/jinjin/updateBoard.do') {
-        		alert('권한이 없습니다.');
-        		history.back(-1);       		
-        	}
-         })
-        
-    </script>
-    <%  
-        } else {        	
-        
-        %>
-        
-     
-        
-    <%  
-        } 
-        
-        %>    
-        
-        
+
+
 </head>
 <body>
 <div id="wrap">
+
 <form:form commandName="boardVO" id="detailForm" name="detailForm" class="write_frm">
-		<%!
-	    public String getClientIP(HttpServletRequest request) {
-	        String ip = request.getHeader("X-FORWARDED-FOR");
-	        if (ip == null || ip.length() == 0) ip = request.getHeader("Proxy-Client-IP");
-	        if (ip == null || ip.length() == 0) ip = request.getHeader("WL-Proxy-Client-IP");
-	        if (ip == null || ip.length() == 0) ip = request.getRemoteAddr();
-	        return ip;
-	    }
-
-		String AllowIp[] = { "0:0:0:0:0:0:0:1", "127.0.0.1", "192.168.7.148", "192.168.7.182" };
- %>
-
-<div class="header_wrap">
-    <div class="inner clearfix">
-        <div class="logo_wrap float-left">
-            <h1 class="logo"><a href="javascript:GoSitePageLink('main');"></a></h1>
-        </div>
-        <div class="menu_wrap float-right">
-            <ul class="menu">
-                <li class="item company text-align-center font-bold" onmouseover="text_change('회사소개');">
-                    <h2><a href="javascript:GoSitePageLink('company')">회사소개</a></h2>
-                </li>
-                <li class="item product text-align-center font-bold" onmouseover="text_change('제품소개');">
-                    <h2><a href="javascript:GoSitePageLink('product')">제품소개</a></h2>
-                </li>
-                <li class="item download text-align-center font-bold" onmouseover="text_change('다운로드');">
-                    <h2><a href="javascript:GoSitePageLink('download')">다운로드</a></h2>
-                </li>
-                <li class="item demo text-align-center font-bold" onmouseover="text_change('데모');">
-                    <h2><a href="javascript:GoSitePageLink('demo')">데모</a></h2>
-                </li>
-                <li class="item customer_center text-align-center font-bold" onmouseover="text_change('고객센터');">
-                    <h2><a href="javascript:GoSitePageLink('customer_center')">고객센터</a></h2>
-                </li>
-            </ul>
-
-            <!-- mega menu S -->
-            <div class="mega_menu_wrap">
-                <div class="inner clearfix">
-                    <div class="intro_wrap float-left">
-                        <div class="intro">
-                            <h1 class="intro_header font-bold">회사소개</h1>
-                            <p class="intro_body font-bold">27년의 소프트웨어 개발업력을 가진<br />진진시스템을 소개합니다.</p>
-                        </div>
-                    </div>
-                    <div class="mega_menu float-right">
-                        <ul class="menu">
-                            <li class="item company text-align-center" onmouseover="text_change('회사소개');">
-                                <a href="javascript:GoSitePageLink('com_01')"><h3>CEO 인사말</h3></a>
-                                <a href="javascript:GoSitePageLink('com_02')"><h3>회사 연혁</h3></a>
-                                <a href="javascript:GoSitePageLink('com_03')"><h3>사업실적</h3></a>
-                                <a href="javascript:GoSitePageLink('com_04')"><h3>오시는길</h3></a>
-                            </li>
-                            <li class="item product text-align-center" onmouseover="text_change('제품소개');">
-                                <a href="javascript:GoSitePageLink('pro_01')"><h3>SQLservlet</h3></a>
-                                <a href="javascript:GoSitePageLink('pro_02')"><h3>ServerCraft</h3></a>
-                            </li>
-                            <li class="item download text-align-center" onmouseover="text_change('다운로드');">
-                                <a href="javascript:GoSitePageLink('download')"><h3>다운로드</h3></a>
-                            </li>
-                            <li class="item demo text-align-center" onmouseover="text_change('데모');">
-                                <a href="javascript:GoSitePageLink('demo_01')"><h3>SQLservlet</h3></a>
-                            </li>
-                            <li class="item customer_center text-align-center" onmouseover="text_change('고객센터');">
-                                <a href="javascript:GoSitePageLink('help_01')"><h3>공지사항</h3></a>
-                                <a href="javascript:GoSitePageLink('help_02')"><h3>영업문의</h3></a>
-                                <a href="javascript:GoSitePageLink('help_03')"><h3>기술문의</h3></a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-            <!-- mega menu E -->
-        </div>
-    </div>
-</div>
 
 
- <script>
-     function text_change(target) {
-        var text = document.querySelector(".intro_header");
-        text.innerHTML=target;
-     }
- </script>
-		<!-- header E -->
+            <%@ include file="../inc/header.jsp" %>
+            <%@ include file="../inc/main_visual.jsp" %>
 
-        <!-- main visual S -->
-        <div class="sub_mainVisual_box text-align-center">
-    <div class="sub_mainVisual">
-        <div class="sub_mainText">
-            <div class="sub_mainTextHeader">
-                <h2>고객께 최선을 다하는 <b>진진시스템</b></h2>
-            </div>
-          <div class="sub_mainTextBody">
-                <p>
-                    진진시스템(주)는 풍부한 기술노하우와 정예화된 수행능력을 바탕으로
-                    <br />
-                    지난 27년동안 뛰어난 제품 품질을 인정받고 있는 Total IT Service 전문기업입니다.
-                </p>
-            </div>
-        </div>
-    </div>
-</div>
-        <!-- main visual E -->
-		
-		<!-- container wrap S -->
-		<div class="container_wrap clearfix">
-            <!-- subNav & side S -->
-            <div class="side">
-    <h2 class="side_text text-align-center bold">고객센터</h2>
-    <ul class="side_nav">
-        <li id="help_01" class="sideList">
-            <h2>
-                <a href="javascript:GoSitePageLink('help_01');">공지사항</a>
-            </h2>
-        </li>
-        <li class="sideList">
-            <h2>
-                <a href="javascript:GoSitePageLink('help_02');">영업문의</a>
-            </h2>
-        </li>
-        <li class="sideList">
-            <h2>
-                <a href="javascript:GoSitePageLink('help_03');">기술문의</a>
-            </h2>
-        </li>
-    </ul>
-</div>
+
+          
+
+	
+	<div class="container_wrap clearfix">
+<%@ include file="../inc/menu.jsp" %>
 <%-- <%@ include file="./menu.jsp" %> --%>
 <form:form commandName="boardVO" id="detailForm" name="detailForm" class="write_frm">
            <div class="content">
@@ -350,30 +189,7 @@
     		<a href="#" class="btn goList show tooltiptext admin-btn" onclick="javascript:fn_egov_delete();" >삭제</a></br></br>
     		<span title="실제로 어떻게 게시되는지 게시물을 보기위해 에디터를 끕니다." class="btn editor-load admin-btn">토글</span>
     			</c:if>
-    			<%-- <li>    			
-                    <span class="btn_blue_l">
-                        <a href="javascript:fn_egov_selectList();"><spring:message code="button.list" /></a>
-                        <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" style="margin-left:6px;" alt=""/>
-                    </span>
-                </li> --%>
-    			<%-- <li>
-                    <span class="btn_blue_l">
-                        <a href="javascript:submitContents();">                            
-                            <input type="button" id="saveBtn" class="btn save" onclick="submitContents()" value="저장"><c:if test="${registerFlag == 'create'}">
-                            <spring:message code="button.create" />
-                            </c:if> 
-                            <c:if test="${registerFlag == 'modify'}"><spring:message code="button.modify" /></c:if>
-                        </a>                       
-                        <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" style="margin-left:6px;" alt=""/>
-                    </span>
-                </li> --%>
-    	
-    			<%-- <li>
-                    <span class="btn_blue_l">
-                        <a href="javascript:document.detailForm.reset();"><spring:message code="button.reset" /></a>
-                        <img src="<c:url value='/images/egovframework/example/btn_bg_r.gif'/>" style="margin-left:6px;" alt=""/>
-                    </span>
-                </li> --%>
+    			
             </ul>
     	</div>
                 </div>
@@ -382,9 +198,6 @@
     </form:form>
    
     <!-- 검색조건 유지 -->
-    <%-- <input type="hidden" name="searchCondition" value="<c:out value='${searchVO.searchCondition}'/>"/>
-    <input type="hidden" name="searchKeyword" value="<c:out value='${searchVO.searchKeyword}'/>"/>
-    <input type="hidden" name="pageIndex" value="<c:out value='${searchVO.pageIndex}'/>"/> --%>
 
 		<div class="footer_wrap">
     <div class="footer clearfix">

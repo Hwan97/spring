@@ -11,14 +11,34 @@
             }
         }
         System.out.println("UserIP : "+ip+", ALLOW : "+isAllow);
-        if(isAllow){
+        if(!isAllow) {
     %>
     <script>
         $(document).ready(function () {
         	var url = location.href;
         	console.log(url)
-            $(".write_btn").css("display","block");
+            $(".write_btn").css("display","none");
+        	$('.admin-btn').css('display','none');
+        	$('.subject').attr('disabled', true);
+        	$('.txtContent').attr('disabled', true);
+       	  	$('.admin-content').css('display','none');   
+        	$('.user-content').css('display','block');         	
+       	  if(location.href === 'http://121.130.10.5:8080/jinjin/addBoard.do' ) {         		 
+        		alert('권한이 없습니다.');
+        		history.back(-1);
+        	} else if (location.href === 'http://121.130.10.5:8080/jinjin/updateBoard.do') {
+        		alert('권한이 없습니다.');
+        		history.back(-1);
+        	}       	  
+         else if (location.href === 'http://121.130.10.5:8080/jinjin/deleteBoard.do') {
+    		alert('권한이 없습니다.');
+    		history.back(-1);
+    	}
+       
         });
+       
+        
+        
     </script>
     <% }  %>
 

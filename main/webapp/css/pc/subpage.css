@@ -238,7 +238,7 @@ overflow:hidden;
 #paging{ margin-top: 40px; text-align: center; vertical-align: top; position: relative; }
 
 .content .content_body .paging li { display: inline-block; width: 26px; height: 26px; vertical-align: middle; }
-.content .content_body .paging li.write_btn{ display:none; width: 80px; position: absolute; right: 0; font-size: .8em; top:0; }
+.content .content_body .paging li.write_btn{ width: 80px; position: absolute; right: 0; font-size: .8em; top:0; }
 .content .content_body .paging li.first>a { background: url(../../images/subpage/customer_center/paging_first.gif) no-repeat; }
 .content .content_body .paging li.prev>a { background: url(../../images/subpage/customer_center/paging_prev.gif) no-repeat; }
 .content .content_body .paging li.next>a { background: url(../../images/subpage/customer_center/paging_next.gif) no-repeat; }
