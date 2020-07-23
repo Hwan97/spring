@@ -1,4 +1,3 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c"         uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form"      uri="http://www.springframework.org/tags/form" %>
@@ -80,8 +79,10 @@
             }else{
             	frm.action = "<c:url value="${registerFlag == 'create' ? '/addBoard.do' : '/updateBoard.do'}"/>";
                 frm.submit();
+                return false;  
+                
             }
-        	        
+        	      return false;  
         }
         -->
       
@@ -180,12 +181,12 @@
                       	<div id="sysbtn" class="write_btn_wrap">
     		<ul>
     		<c:if test="${registerFlag == 'create'}">
-    		<input type="button" id="saveBtn" class="btn save" onclick="submitContents()" value="저장">
+    		<input type="button" id="saveBtn" class="btn save" onclick="submitContents()" value="저장">    		  
+    		<!-- <input type="button" id="saveBtn" class="btn save" onclick="javascript:fn_egov_save();" value="저장"> -->
     		</c:if>
     		<a href="#" class="btn goList " onclick="javascript:history.back();">목록</a>
     				<c:if test="${registerFlag == 'modify'}">
-    				<input type="button" id="saveBtn" class="btn save show admin-btn" onclick="submitContents()" value="수정">
-    				<!-- <input type="button" id="saveBtn" class="btn save" onclick="javascript:fn_egov_save();" value="저장"> -->
+    				<input type="button" id="saveBtn" class="btn save show admin-btn" onclick="submitContents()" value="수정">    				
     		<a href="#" class="btn goList show tooltiptext admin-btn" onclick="javascript:fn_egov_delete();" >삭제</a></br></br>
     		<span title="실제로 어떻게 게시되는지 게시물을 보기위해 에디터를 끕니다." class="btn editor-load admin-btn">토글</span>
     			</c:if>
@@ -248,11 +249,13 @@
                 return;
             } 
             try {
-                elClickedObj.submit();
+                /* elClickedObj.submit(); */
+                fn_egov_save()
             } catch(e) {
-            	
+            	console.log(e)
             }            
-            fn_egov_save()
+            
+            
         }
 
         // 에디터 세팅

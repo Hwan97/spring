@@ -215,6 +215,10 @@ public class BoardDAO extends EgovAbstractDAO {
 	public List<BoardVO> selectBoardList(BoardDefaultVO searchVO) throws Exception {
 		return (List<BoardVO>) list("boardDAO.selectBoardList", searchVO);
 	}
+	
+	public List<BoardVO> selectBoardList1(BoardDefaultVO searchVO) throws Exception {
+		return (List<BoardVO>) list("boardDAO.selectBoardList1", searchVO);
+	}
 
 	/**
 	 * 글 총 갯수를 조회한다.

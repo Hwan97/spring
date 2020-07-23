@@ -69,6 +69,7 @@ public interface BoardMapper {
 	 * @exception Exception
 	 */
 	List<BoardVO> selectBoardList(BoardDefaultVO searchVO) throws Exception;
+	List<BoardVO> selectBoardList1(BoardDefaultVO searchVO) throws Exception;
 
 	/**
 	 * 글 총 갯수를 조회한다.

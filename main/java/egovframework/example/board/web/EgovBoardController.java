@@ -82,10 +82,38 @@ public class EgovBoardController {
 	 */
 
 	 	@RequestMapping(value = "/main.do")
-		public String selectMainBoard(HttpServletRequest request, BoardVO boardVO, @ModelAttribute("searchVO") BoardDefaultVO searchVO, Model model) throws Exception {
-			model.addAttribute("boardList", boardService.selectMainBoard(boardVO)); // check : 객체 설정, 리턴 되기 전에 처리 필수			
+		public String selectBoardList1(HttpServletRequest request, BoardVO boardVO, @ModelAttribute("searchVO") BoardDefaultVO searchVO, Model model) throws Exception {	
+		model.addAttribute("boardList", boardService.selectMainBoard(boardVO)); // check : 객체 설정, 리턴 되기 전에 처리 필수			
 			Device device = DeviceUtils.getCurrentDevice(request);			
 			if(device.isMobile()) 		 	return "m/index"; // check : 바로 return이 아니고 단순히 viewName만 처리			
+			
+			
+			/** EgovPropertyService.board */
+		searchVO.setPageUnit(propertiesService.getInt("pageUnit"));
+		searchVO.setPageSize(propertiesService.getInt("pageSize"));
+
+		/** pageing setting */
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(searchVO.getPageIndex());
+		paginationInfo.setRecordCountPerPage(searchVO.getPageUnit());
+		paginationInfo.setPageSize(searchVO.getPageSize());
+
+		searchVO.setFirstIndex(paginationInfo.getFirstRecordIndex());
+		searchVO.setLastIndex(paginationInfo.getLastRecordIndex());
+		searchVO.setRecordCountPerPage(paginationInfo.getRecordCountPerPage());
+
+		List<?> boardList = boardService.selectBoardList1(searchVO);
+		model.addAttribute("resultList", boardList);
+
+		int totCnt = boardService.selectBoardListTotCnt(searchVO);
+		paginationInfo.setTotalRecordCount(totCnt);
+		model.addAttribute("paginationInfo", paginationInfo);
+		
+		totCnt = totCnt + 1; 
+		
+		model.addAttribute("totCnt", totCnt);
+			
+			
 			return "index";
 		}
 	
@@ -169,7 +197,9 @@ public class EgovBoardController {
 		Device device = DeviceUtils.getCurrentDevice(request);			
 		if(device.isMobile()) 		 	return "m/customer_center/help_01"; // check : 바로 return이 아니고 단순히 viewName만 처리
 		
-		return "customer_center/help_01";				
+		/*return "customer_center/help_01";*/
+		return "customer_center/help_01";
+		
 	}
 
 	/**
@@ -208,7 +238,7 @@ public class EgovBoardController {
 
 		boardService.insertBoard(boardVO);
 		status.setComplete();
-		return "forward:/help_01.do";
+		return "redirect:/help_01.do";
 	}
 	
 	/**
@@ -268,7 +298,7 @@ public class EgovBoardController {
 
 			boardService.updateBoard(boardVO);
 			status.setComplete();
-			return "forward:/help_01.do";
+			return "redirect:/help_01.do";
 		}
 
 	/**

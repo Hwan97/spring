@@ -157,7 +157,7 @@
                                         <td align="center" class="listtd">
                                             <c:out value="${result.datetime}" />&nbsp;</td>
                                         <td align="center" class="listtd">
-                                            <c:out value="${result.hitcounter}" />&nbsp;</td>
+                                            <c:out value="${result.hitcounter}" />&nbsp;</td>                                            
                                        
                                     </tr>
                                 </c:forEach>

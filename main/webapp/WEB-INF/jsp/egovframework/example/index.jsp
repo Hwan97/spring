@@ -20,23 +20,22 @@
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/classlist/1.2.20171210/classList.min.js"></script>		
 		<script src="<c:url value="/./js/main.js"/>" /> </script>	
 		<script src="<c:url value="/js/slider.js"/>" > </script>	
-		<script src="<c:url value="/js/menu_link.js"/>" > </script>
-		
-				<script>
+		<script src="<c:url value="/js/menu_link.js"/>" > </script>		
+		<script>
 				
 	window.onload = function(){
-	
-var red = document.getElementById('news_content');
-var children = red.getElementsByTagName("*");
-	if(children.length)
-// 그래서, 먼저 개체가 찼는 지(자식 노드가 있는 지) 검사
- {
-	console.log('자식있음')
+		
+		var red = document.getElementById('news_content');
+		var children = red.getElementsByTagName("*");
+		if(children.length)
+			// 그래서, 먼저 개체가 찼는 지(자식 노드가 있는 지) 검사
+		{
+		console.log('자식있음')
 	   /* console.log(red + "asd") */
-   console.log(children[i])
-   for (var i = 0; i < children.length; i++) {	      
-   		children[i].removeAttribute("style");
-   		children[i].removeAttribute("align");
+   		console.log(children[i])
+   		for (var i = 0; i < children.length; i++) {	      
+   			children[i].removeAttribute("style");
+   			children[i].removeAttribute("align");
    }}   
 };
 
@@ -44,36 +43,37 @@ var children = red.getElementsByTagName("*");
 		
 	<script type="text/javaScript" language="javascript" defer="defer">
  
-        /* 글 수정 화면 function */
-        function fn_egov_select(id) {
-        	
-        	document.detailForm.selectedId.value = id;
-           	document.detailForm.action = "<c:url value='/updateBoardView.do'/>";
-           	document.detailForm.submit();
-        }
-               
-        
-        /* 글 등록 화면 function */
-        function fn_egov_addView() {
-           	document.detailForm.action = "<c:url value='/addBoard.do'/>";
-           	document.detailForm.submit();
-        }
-        
-        /* 글 목록 화면 function */
-        function fn_egov_selectList() {
-        	document.detailForm.action = "<c:url value='/egovBoardList.do'/>";
-           	document.detailForm.submit();
-        }
-        
-        /* pagination 페이지 링크 function */
-        function fn_egov_link_page(pageNo){
-        	document.detailForm.pageIndex.value = pageNo;
-        	document.detailForm.action = "<c:url value='/egovBoardList.do'/>";
-           	document.detailForm.submit();
-        }
-        
+    <!--
+    
+    /* 글 수정 화면 function */
+    function fn_egov_select(id) {
+    	document.listForm.selectedId.value = id;
+       	document.listForm.action = "<c:url value='/updateBoardView.do'/>";
+       	document.listForm.submit();
+    }
+    
+    /* 글 등록 화면 function */
+    function fn_egov_addView() {
+       	document.listForm.action = "<c:url value='/addBoard.do'/>";
+       	document.listForm.submit();
+    }
+    
+    /* 글 목록 화면 function */
+    function fn_egov_selectList() {
+    	document.listForm.action = "<c:url value='/egovBoardList.do'/>";
+       	document.listForm.submit();
+    }
+    
+    /* pagination 페이지 링크 function */
+    function fn_egov_link_page(pageNo){
+    	document.listForm.pageIndex.value = pageNo;
+    	document.listForm.action = "<c:url value='/egovBoardList.do'/>";
+       	document.listForm.submit();
+    }
+    
+    //-->
 
-	</script>	
+	</script>
 	
 	</head>
 	
@@ -83,7 +83,7 @@ var children = red.getElementsByTagName("*");
 		<!-- header S -->
 		<%@ include file="./inc/header.jsp" %>
 		<!-- header E -->
-
+		
         <!-- fade background S -->
         <div class="fade_container">
 			<div class="bg_1 fade_img1"></div>
@@ -105,7 +105,6 @@ var children = red.getElementsByTagName("*");
 						<div class="slider_btn slider_next"></div>
 					</div>
 					<!-- slider controller E -->
-
 					<!-- slider content S -->
 					<div class="slider_content_wrap">
 						<div class="slider_content slide_01">
@@ -147,9 +146,10 @@ var children = red.getElementsByTagName("*");
 				<!-- right side -->
 				<div class="side">
 					<!-- news S -->			
-					<form:form commandName="boardVO" id="detailForm" name="detailForm" method="post">
-							  <%-- <form:input path="id" cssClass="essentiality" maxlength="10" readonly="true" /> --%>							 					
+					<form:form commandName="searchVO" id="listForm" name="listForm" method="post">
+							  <%-- <form:input path="id" cssClass="essentiality" maxlength="10" readonly="true" /> --%>	 <input type="hidden" name="selectedId" />						 					
 					<div class="news">
+					            <c:forEach var="result" items="${resultList}" varStatus="status">
 						<div class="news_label">NEWS
 						<%-- ${boardList.id} --%>
 						</div>
@@ -157,22 +157,30 @@ var children = red.getElementsByTagName("*");
 							<a href="javascript:GoSitePageLink('customer_center');">더보기</a>	<!-- MORE button -->
 						</div>
 						<div class="news_subject">
-							<%-- <a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" ><c:out value="${boardList.id}"/>&nbsp; --%>
-							<a href="javascript:GoSitePageLink('customer_center');">${boardList.name}</a>  								 												
+				<a href="javascript:fn_egov_select('<c:out value=" ${result.id}" />')"
+                                            name="selectedId" >
+                                            <c:out value="${result.name}" />&nbsp;</td>
 						</div>
 						<div class="news_date">											
-						<fmt:formatDate pattern="yyyy-MM-dd" value="${boardList.datetime}" />											
+				          <c:out value="${result.datetime}" />&nbsp;</td>									
 						</div>
 						<div class="news_content" style="background:white;" id="news_content">
-						<a href="javascript:GoSitePageLink('customer_center');">${boardList.description}</a>
-									
+<%-- 						<a
+							href="javascript:fn_egov_select('<c:out value=" ${result.id}" />')"
+                                            name="selectedId" >
+                                            <c:out value="${result.description}" /> --%>
+                                            						
+                                            						
+                                            						<a
+                                                href="javascript:fn_egov_select('<c:out value=" ${result.id}" />')"
+                                            name="selectedId" >
+                                            ${boardList.description}
+                                            </a>
+                                            
 						</div>
-					</div>        			
+						</c:forEach>
+					</div>
 					</form:form>
-					<form:form commandName="searchVO" id="listForm" name="listForm" method="post">					
-						<%-- <a href="javascript:fn_egov_select('<c:out value="${boardList.id}"/>')" name="selectedId" ><c:out value="${boardList.name}"/>&nbsp;
-						<td align="left" class="listtd"><a href="javascript:fn_egov_select('<c:out value="${result.id}"/>')" name="selectedId" ><c:out value="${result.name}"/>&nbsp;</td>            				 --%>
-					</form:form>							
 					<!-- news E -->
 					<!-- Remote support Service S -->
 					<div class="remote">
@@ -195,13 +203,48 @@ var children = red.getElementsByTagName("*");
 					<!-- customer center E -->
 				</div>
 			</div>
-		</div>		
+		</div>
 		<!-- footer S -->
-		<%@ include file="./inc/footer.jsp" %>		
+		<%@ include file="./inc/footer.jsp" %>
+			<%-- 	<form:form commandName="searchVO" id="listForm" name="listForm" method="post">					
+				    <table class="board">     
+                            <caption>공지사항 목록</caption>
+                            <colgroup>
+                                <col class="w10p">
+                                <col>
+                                <col class="w10p date">
+                                <col class="w10p">
+                            </colgroup>
+                            <thead>
+                                <tr>
+                                    <th scope="col">번호</th>
+                                    <th scope="col">제목</th>
+                                    <th scope="col">등록일</th>
+                                    <th scope="col">조회수</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <c:forEach var="result" items="${resultList}" varStatus="status">
+                                    <tr><input type="hidden" name="selectedId" />
+                                        <td align="center" class="listtd">
+                                            <c:out
+                                                value="${paginationInfo.totalRecordCount+2 - ((searchVO.pageIndex-1) * searchVO.pageSize + status.count)}" />
+                                        </td>
+                                        <td align="left" class="listtd"><a
+                                                href="javascript:fn_egov_select('<c:out value=" ${result.id}" />')"
+                                            name="selectedId" >
+                                            <c:out value="${result.name}" />&nbsp;</td>s
+                                        <td align="center" class="listtd">
+                                            <c:out value="${result.datetime}" />&nbsp;</td>
+                                        <td align="center" class="listtd">
+                                            <c:out value="${result.hitcounter}" />&nbsp;</td>
+                                    </tr>
+                                </c:forEach>
+                            </tbody>
+                        </table>
+					</form:form> --%>
 		<!-- footer E -->
 	</div>
-
 	<!-- script -->
-
 </body>
 </html>

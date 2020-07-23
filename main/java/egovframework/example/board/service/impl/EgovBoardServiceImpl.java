@@ -119,9 +119,12 @@ public class EgovBoardServiceImpl extends EgovAbstractServiceImpl implements Ego
 	 * @exception Exception
 	 */
 	@Override
-	public List<BoardVO> selectBoardList(BoardDefaultVO searchVO) throws Exception {
-		
+	public List<BoardVO> selectBoardList(BoardDefaultVO searchVO) throws Exception {		
 		return boardDAO.selectBoardList(searchVO);
+	}
+	
+	public List<BoardVO> selectBoardList1(BoardDefaultVO searchVO) throws Exception {		
+		return boardDAO.selectBoardList1(searchVO);
 	}
 	
 /*	private Date format(Date d) {

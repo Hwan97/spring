@@ -169,6 +169,7 @@ public interface EgovBoardService {
 	 * @exception Exception
 	 */
 	List<?> selectBoardList(BoardDefaultVO searchVO) throws Exception;
+	List<?> selectBoardList1(BoardDefaultVO searchVO) throws Exception;
 
 	/**
 	 * 글 총 갯수를 조회한다.

@@ -5,7 +5,7 @@
 	<resultMap id="board" type="egovframework.example.board.service.BoardVO">
 		<result property="id" column="id"/>
 		<result property="name" column="name"/>
-		<result property="description" column="description"/>
+		<result property="description" column="description"  jdbcType="CLOB" javaType="java.lang.String"/>
 		<!-- <result property="useYn" column="use_yn"/>
 		<result property="regUser" column="reg_user"/> -->
 		<result property="hitCounter" column="hitCounter"/>
@@ -94,12 +94,34 @@
 			</if> 
 		ORDER BY ID DESC
 	) A
-	)WHERE RN BETWEEN #{firstIndex} AND #{firstIndex} + #{recordCountPerPage}	
-		
-	
-
-			 
+	)WHERE RN BETWEEN #{firstIndex} AND #{firstIndex} + #{recordCountPerPage}						 
 	</select>
+	
+		<select id="selectBoardList1" parameterType="searchVO" resultType="egovMap">
+				           
+              SELECT * FROM 
+(
+	SELECT  
+		A.*
+		, ROWNUM AS RN
+	FROM
+	( 
+		SELECT 
+			ID
+			, NAME ,
+			<!-- , DESCRIPTION -->
+			
+			DBMS_LOB.SUBSTR(DESCRIPTION, 400, 1) 
+			, HITCOUNTER
+			,  TO_CHAR(DATETIME, 'YYYY-MM-DD') AS "DATETIME"
+		FROM BOARD
+		WHERE 1=1	
+				
+		ORDER BY ID DESC
+	) A
+	)WHERE ROWNUM =1		
+	</select>
+	
 
 	<select id="selectBoardListTotCnt" parameterType="searchVO" resultType="int">
 			SELECT COUNT(*) totcnt
